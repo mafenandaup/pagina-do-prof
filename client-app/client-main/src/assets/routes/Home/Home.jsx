@@ -1,5 +1,6 @@
 import React from 'react'
 import DefaultNavbar from '../../components/DefaultNavbar'
+import './Home.css'
 
 const Home = () => {
   return (

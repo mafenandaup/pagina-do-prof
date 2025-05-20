@@ -7,3 +7,15 @@
     --baby-powder: rgb(240, 241, 234);
     --night: #121212ff;
 }
+
+.home-aulas{
+    display: flex;
+    background-color: var(--federal-blue);
+    flex-direction: column-reverse;
+width: 30rem;
+}
+
+.nav-home{
+
+
+}
