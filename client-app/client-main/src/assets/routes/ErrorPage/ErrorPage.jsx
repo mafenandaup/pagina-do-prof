@@ -1,12 +1,11 @@
 import React from 'react'
 import './ErrorPage.css'
 import ReturnHomeButton from '../../components/ErrorPage/ReturnHomeButton'
-import { motion } from "motion/react"
 
 
 const ErrorPage = () => {
   return (
-    <section >
+    <section className='error-section' >
 
       <h1>404</h1>
       <p>A página que você está buscando não existe ¯\_(ツ)_/¯  </p>
