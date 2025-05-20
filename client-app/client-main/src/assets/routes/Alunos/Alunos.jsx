@@ -1,4 +1,5 @@
 import React from 'react'
+import './Alunos.css'
 
 const Alunos = () => {
   return (
