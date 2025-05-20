@@ -8,10 +8,19 @@ import { createBrowserRouter, RouterProvider, } from 'react-router-dom'
 import Home from './assets/routes/Home.jsx'
 import OtherPage from './assets/routes/OtherPage.jsx'
 
-const router = createBrowserRouter([])
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home/>
+  },
+  {
+    path: "/",
+    element: <OtherPage/>
+  }
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+   <RouterProvider router={router}/>
   </StrictMode>,
 )
