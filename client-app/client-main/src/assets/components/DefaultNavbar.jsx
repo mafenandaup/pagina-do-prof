@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 const DefaultNavbar = () => {
     return (
         <>
-            <nav>
+            <nav className='nav-homepage'>
                 
-<Link to="/alunos" >alunos</Link>
+                <Link to="/home" >Aulas</Link>
+                <Link to="/alunos" >Alunos</Link>
+                <Link to="/alunos" >alunos</Link>
             </nav>
         </>
     )
