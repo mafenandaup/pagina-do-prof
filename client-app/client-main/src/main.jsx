@@ -10,11 +10,11 @@ import OtherPage from './assets/routes/OtherPage.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/home",
     element: <Home/>
   },
   {
-    path: "/",
+    path: "/outrapagina",
     element: <OtherPage/>
   }
 ])
