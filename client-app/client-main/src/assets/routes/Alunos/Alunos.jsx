@@ -2,9 +2,9 @@ import React from 'react'
 
 const Alunos = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <h1>test</h1>
+    </>
   )
 }
 
