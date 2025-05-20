@@ -4,7 +4,7 @@ import App from './App.jsx'
 
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom'
 
-import Home from './assets/routes/Home.jsx'
+import Home from './assets/routes/Home/Home.jsx'
 import Alunos from './assets/routes/Alunos/Alunos.jsx'
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx'
 
