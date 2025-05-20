@@ -1,9 +1,11 @@
 import React from 'react'
+import DefaultNavbar from '../../components/DefaultNavbar'
 
 const Home = () => {
   return (
     <>
       <section className="home-aulas">
+        <DefaultNavbar />
         <h1>Home</h1>
       </section>
     </>
