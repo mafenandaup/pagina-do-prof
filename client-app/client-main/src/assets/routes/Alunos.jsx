@@ -1,11 +1,11 @@
 import React from 'react'
 
-const OtherPage = () => {
+const Alunos = () => {
   return (
     <div>
-      <h1>fodase</h1>
+      <h1>Alunos</h1>
     </div>
   )
 }
 
-export default OtherPage
+export default Alunos
