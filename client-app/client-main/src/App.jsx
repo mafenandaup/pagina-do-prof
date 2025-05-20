@@ -1,12 +1,16 @@
 
 import './App.css'
 
+import { Outlet } from 'react-router-dom'
+import ButtonTest from './assets/components/ButtonTest'
+
 function App() {
 
   return (
     <>
       <div>
-        <h1>testing</h1>
+        <ButtonTest/>
+        <Outlet/>
       </div>
     </>
   )

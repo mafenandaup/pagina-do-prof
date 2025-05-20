@@ -7,20 +7,28 @@ import { createBrowserRouter, RouterProvider, } from 'react-router-dom'
 
 import Home from './assets/routes/Home.jsx'
 import OtherPage from './assets/routes/OtherPage.jsx'
+import ErrorPage from './assets/routes/ErrorPage.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/home",
-    element: <Home/>
-  },
-  {
-    path: "/outrapagina",
-    element: <OtherPage/>
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage/>,
+    children: [
+      {
+        path: "/outrapagina",
+        element: <OtherPage />
+      },
+      {
+        path: "/home",
+        element: <Home />,
+      },
+    ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </StrictMode>,
 )
