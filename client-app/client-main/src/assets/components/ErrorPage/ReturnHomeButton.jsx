@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ButtonTest = () => {
+const ReturnHomeButton = () => {
     return (
-        <div>
+        <>
             <Link to="/alunos">
-                <button>Para teste</button>
+                <button>Voltar ao Início</button>
             </Link>
-        </div>
+        </>
     )
 }
 
-export default ButtonTest
+export default ReturnHomeButton

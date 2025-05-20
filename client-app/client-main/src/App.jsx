@@ -2,15 +2,13 @@
 import './App.css'
 
 import { Outlet } from 'react-router-dom'
-import ButtonTest from './assets/components/ButtonTest'
+import ButtonTest from './assets/components/ErrorPage/ReturnHomeButton'
 
 function App() {
 
   return (
     <>
       <div>
-        <ButtonTest/>
-        <Outlet/>
       </div>
     </>
   )

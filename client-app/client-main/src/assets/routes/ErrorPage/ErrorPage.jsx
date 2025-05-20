@@ -1,11 +1,18 @@
 import React from 'react'
+import './ErrorPage.css'
+import ReturnHomeButton from '../../components/ErrorPage/ReturnHomeButton'
+import { motion } from "motion/react"
+
 
 const ErrorPage = () => {
   return (
-    <div>
+    <section >
+
       <h1>404</h1>
-      <p>Erro 404 :</p>
-    </div>
+      <p>A página que você está buscando não existe ¯\_(ツ)_/¯  </p>
+      <ReturnHomeButton />
+
+    </section>
   )
 }
 
