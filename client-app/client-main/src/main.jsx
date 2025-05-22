@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 
-import { createBrowserRouter, RouterProvider, } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Home from './assets/routes/Home/Home.jsx'
 import Alunos from './assets/routes/Alunos/Alunos.jsx'
@@ -14,6 +14,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+    
       {
         path: "/alunos",
         element: <Alunos />

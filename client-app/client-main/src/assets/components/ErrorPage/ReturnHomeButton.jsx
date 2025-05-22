@@ -8,7 +8,7 @@ import { motion } from "motion/react"
 const ReturnHomeButton = () => {
     return (
         <>
-            <Link to="/alunos">
+            <Link to="/home">
                 <motion.button className='return-home-btn' whileHover={{scale: 1.1}}>Voltar ao Início <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon></motion.button>
             </Link>
         </>

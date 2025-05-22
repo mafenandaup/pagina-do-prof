@@ -4,18 +4,43 @@
     --process-cyan: #48acd3ff;
     --non-photo-blue: #90e0efff;
     --light-cyan: rgb(169, 213, 222);
-    --baby-powder: rgb(240, 241, 234);
+    --baby-powder: rgb(232, 233, 228);
     --night: #121212ff;
 }
 
-.home-aulas{
+.home-aulas {
     display: flex;
-    background-color: var(--federal-blue);
+    justify-content: start;
+    align-items: center;
+    background-color: var(--baby-powder);
     flex-direction: column-reverse;
-width: 30rem;
+    width: 54rem;
+    height: 36rem;
+    border-radius: 20px;
+
 }
 
-.nav-home{
+.nav-home {
+    width: 100%;
+    background-color: var(--federal-blue);
+    display: flex;
+    justify-content: space-around;
+    /* Distributes items evenly with space around them */
+    align-items: center;
+    height: 3rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0 1rem;
 
+    & .link {
+        color: var(--baby-powder);
+        text-decoration: none;
+        align-self: center;
+        transition: color ease-out 0.2s;
+    }
+}
 
+.link:hover {
+    cursor: pointer;
+    color: var(--process-cyan);
 }
