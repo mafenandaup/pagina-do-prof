@@ -10,7 +10,7 @@
 
 .home-aulas {
     display: flex;
-    justify-content: start;
+    justify-content: flex-end;
     align-items: center;
     background-color: var(--baby-powder);
     flex-direction: column-reverse;
@@ -25,22 +25,24 @@
     background-color: var(--federal-blue);
     display: flex;
     justify-content: space-around;
-    /* Distributes items evenly with space around them */
     align-items: center;
     height: 3rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 0 1rem;
 
-    & .link {
-        color: var(--baby-powder);
-        text-decoration: none;
-        align-self: center;
-        transition: color ease-out 0.2s;
-    }
+}
+
+.nav-home .link {
+    color: var(--baby-powder); 
+    background: none; 
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color ease-in-out 0.3s;
 }
 
 .link:hover {
     cursor: pointer;
+    text-decoration:underline;
     color: var(--process-cyan);
 }
