@@ -1,3 +1,6 @@
+import { PrismaClient, Aula } from '../generated/prisma';
+const prisma = new PrismaClient();
+
 import express from 'express'
 import cors from 'cors'
 
@@ -7,17 +10,18 @@ const alunoRoutes = express();
 alunoRoutes.use(express.json());
 alunoRoutes.use(cors());
 
-alunoRoutes.get('/testing',async (req,res) => {
-    res.status(200).json('ok, deu certo')
+alunoRoutes.get('/alunos', async (req, res) => {
 
-//       try {
+  try {
+    const alunos = await prisma.aluno.find
+    res.status(200).json(alunos)
     
-//   } catch (error) {
-    
-//   }
+  } catch (error) {
+    res.status(500).json('alunos não encontrados.')
+  }
 })
 
-alunoRoutes.post('/testing', async (req, res) => {
+alunoRoutes.post('/alunos', async (req, res) => {
     res.status(200).json('ok, deu certo')
   //  try {
     
@@ -26,7 +30,7 @@ alunoRoutes.post('/testing', async (req, res) => {
   // }
 })
 
-alunoRoutes.put('/testing/:varID',async (req,res) => { //os dois pontos indicam variável
+alunoRoutes.put('/alunos/:varID',async (req,res) => { //os dois pontos indicam variável
     try {
     
   } catch (error) {
@@ -34,7 +38,7 @@ alunoRoutes.put('/testing/:varID',async (req,res) => { //os dois pontos indicam 
   }
 })
 
-alunoRoutes.patch('/testing:varId',async (req,res) => {
+alunoRoutes.patch('/alunos:varId',async (req,res) => {
     try {
     
   } catch (error) {
@@ -42,7 +46,7 @@ alunoRoutes.patch('/testing:varId',async (req,res) => {
   }
 })
 
-alunoRoutes.delete('/testing:varID',async (req,res) => {
+alunoRoutes.delete('/alunos:varID',async (req,res) => {
   try {
     
   } catch (error) {
