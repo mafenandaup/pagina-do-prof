@@ -13,3 +13,19 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Aula {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId 
+  materia   String   @db.String
+  topico    String   @db.String
+  horario   DateTime @default(now())
+  alunos    Aluno[] 
+}
+
+model Aluno {
+  matricula       String   @id @default(auto()) @map("_id") @db.ObjectId 
+  email     String   @unique                      
+  nome      String   @db.String                   
+  aulaId    String   @db.ObjectId                
+  aula      Aula     @relation(fields: [aulaId], references: [id])
+}
