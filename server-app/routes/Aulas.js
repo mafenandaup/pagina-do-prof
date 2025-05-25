@@ -1,4 +1,4 @@
-import { PrismaClient, Aula } from '../generated/prisma'; //importe o prisma client da pasta correta, e coloque uma const com ele!
+import { PrismaClient } from '../generated/prisma/index.js';
 const prisma = new PrismaClient();
 
 
@@ -21,7 +21,8 @@ aulaRoutes.get('/aulas',async (req,res) => {
 
 aulaRoutes.post('/aulas',async (req,res) => {
   try {
-     const novaAula = await prisma.aula.cre
+    const aulas = await prisma.aula.create();
+    const { materia, topico, horario } = req.body;
     
   } catch (error) {
     
