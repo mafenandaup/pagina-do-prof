@@ -17,12 +17,13 @@ alunoRoutes.get('/testing',async (req,res) => {
 //   }
 })
 
-alunoRoutes.post('/testing',async (req,res) => {
-   try {
+alunoRoutes.post('/testing', async (req, res) => {
+    res.status(200).json('ok, deu certo')
+  //  try {
     
-  } catch (error) {
+  // } catch (error) {
     
-  }
+  // }
 })
 
 alunoRoutes.put('/testing/:varID',async (req,res) => { //os dois pontos indicam variável
