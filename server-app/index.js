@@ -6,8 +6,10 @@ import aulaRoutes from '../server-app/routes/aulas.js'
 
 const appRoutes = express();
 
-
 appRoutes.use(express.json());
 appRoutes.use(cors());
+
+appRoutes.use('/api', alunoRoutes);
+appRoutes.use('/api', aulaRoutes);
 
 appRoutes.listen(3000, () => {});

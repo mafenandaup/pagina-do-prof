@@ -60,3 +60,5 @@ alunoRoutes.delete('/alunos:varID', async (req, res) => {
     
   }
 })
+
+export default alunoRoutes; 

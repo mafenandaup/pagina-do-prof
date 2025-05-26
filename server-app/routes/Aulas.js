@@ -52,3 +52,5 @@ aulaRoutes.delete('/aulas:varID',async (req,res) => {
     
   }
 })
+
+export default aulaRoutes; 
