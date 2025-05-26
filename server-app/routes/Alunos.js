@@ -6,18 +6,17 @@ import cors from 'cors'
 
 const alunoRoutes = express();
 
-
 alunoRoutes.use(express.json());
 alunoRoutes.use(cors());
 
-alunoRoutes.get('/alunos', async (req, res) => {
 
+
+alunoRoutes.get('/alunos', async (req, res) => {
   try {
     const alunos = await prisma.aluno.findMany();
-    res.status(200).json(alunos)
+    res.status(201).json(alunos)
 
   } catch (error) {
-    console.error('Erro ao buscar alunos:', error);
     res.status(500).json('alunos não encontrados.')
   }
 })
@@ -32,36 +31,56 @@ alunoRoutes.post('/alunos', async (req, res) => {
         aulaId
       }
     });
+    res.status(201).json(req.body);
   } catch (error) {
-
+    res.status(500).json({ error: 'Erro ao atualizar o aluno.' });
   }
-})
+});
 
 alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam variável
-  const aluno = await prisma.aluno.update();
   try {
+    const { nome, email, aulaId } = req.body;
+    const { varID } = req.params
+    const alunoAtualizado = await prisma.aluno.update({
+      where: { varID },
+      data: {
+        nome,
+        email,
+        aulaId,
+      },
+    });
 
+    res.status(201).json(req.body);
   } catch (error) {
-
+    res.status(500).json({ error: 'Erro ao atualizar o aluno.' });
   }
-})
+});
 
-alunoRoutes.patch('/alunos:varId', async (req, res) => {
-  const aluno = await prisma.aluno.update();
+alunoRoutes.patch('/alunos:varID', async (req, res) => {
   try {
-
+    const alunoAtualizado = await prisma.aluno.update({
+      where: { matricula: varID },
+      data: {
+        ...(nome && { nome }),
+        ...(email && { email }),  // dados atualizados apenas com dados fornecidos
+        ...(aulaId && { aulaId }),
+      },
+    });
+    res.status(200).json(req.body);
   } catch (error) {
-
+    res.status(500).json({ error: 'Erro ao atualizar o aluno.' });
   }
-})
+});
 
 alunoRoutes.delete('/alunos:varID', async (req, res) => {
-  const aluno = await prisma.aluno.delete();
-
+  const { varID } = req.params
   try {
-
+    await prisma.aluno.delete({
+      where: { varID }
+    });
+    res.status(200).json(req.body)
   } catch (error) {
-
+    res.status(500).json('Erro ao deletar aluno')
   }
 })
 
