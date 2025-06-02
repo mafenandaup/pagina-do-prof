@@ -11,13 +11,25 @@
 .item-container {
     width: 40rem;
     height: 3rem;
-    padding: 3.5rem;
+    padding: 3.2rem;
     background-color: var(--light-cyan);
     display: flex;
-    margin-top: 2rem;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
     border-radius: 1rem;
 }
 
 .icon {
-    width: auto;
+    width: 4.4rem;
+    height: 4.4rem;
+    background-color: var(--marian-blue);
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+
+    && FontAwesomeIcon{
+        height: 34px;
+    }
 }
