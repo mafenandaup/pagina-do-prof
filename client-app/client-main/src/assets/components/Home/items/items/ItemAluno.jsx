@@ -4,6 +4,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import "./items.css";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "motion/react"
 
 
 const ItemAluno = () => {
@@ -12,12 +14,12 @@ const ItemAluno = () => {
                <section className="item-container">
                    <figure className="icon"><FontAwesomeIcon icon={faUser} /></figure>
                    <div className="textbox">
-                       <h1>Nome da aula</h1>
+                       <h1>Nome do aluno</h1>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                    </div>
                    <div className="container-btns">
-                       <button className="delete-btn"><FontAwesomeIcon icon={faTrash} /> Deletar aluno</button>
-                       <button className="edit-btn"><FontAwesomeIcon icon={faPenToSquare}/> Editar aluno</button>
+                       <motion.button whileHover={{scale: 1.08}}  className="delete-btn"><FontAwesomeIcon icon={faTrash} /> Deletar aluno</motion.button>
+                       <motion.button whileHover={{scale: 1.08}} className="edit-btn"><FontAwesomeIcon icon={faPenToSquare}/> Editar aluno</motion.button>
                    </div>
                    
                </section>

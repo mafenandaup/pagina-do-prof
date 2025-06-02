@@ -49,6 +49,12 @@
     color: var(--process-cyan);
 }
 
+.link.active {
+  text-decoration: underline; 
+  font-weight: bold; 
+  color: var(--non-photo-blue); 
+}
+
 .additem-btn {
     padding: 0.3rem;
     border-radius: 0.5rem;

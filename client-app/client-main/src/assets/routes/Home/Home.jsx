@@ -2,7 +2,7 @@ import React from 'react'
 
 import DefaultNavbar from '../../components/DefaultNavbar'
 import './Home.css'
-import ItemAula from '../../components/Home/items/ItemAula'
+import ItemAula from '../../components/Home/items/items/ItemAula'
 
 const Home = () => {
   return (
