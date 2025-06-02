@@ -13,8 +13,8 @@ const ItemAula = () => {
             <section className="item-container">
                 <figure className="icon"><FontAwesomeIcon icon={faBook} /></figure>
                 <div className="textbox">
-                    <h1>Nome da aula</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <h1>Nome da aula - data</h1>
+                    <p>topico da aula</p>
                 </div>
                 <div className="container-btns">
                     <motion.button whileHover={{scale: 1.08}} className="delete-btn"><FontAwesomeIcon icon={faTrash} /> Deletar aula</motion.button>

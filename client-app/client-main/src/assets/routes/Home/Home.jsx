@@ -10,6 +10,7 @@ const Home = () => {
       <section className="alunos-aulas">
         <DefaultNavbar />
         <ItemAula />
+
       </section>
     </>
   )

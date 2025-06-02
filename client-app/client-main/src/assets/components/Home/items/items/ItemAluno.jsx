@@ -14,8 +14,8 @@ const ItemAluno = () => {
                <section className="item-container">
                    <figure className="icon"><FontAwesomeIcon icon={faUser} /></figure>
                    <div className="textbox">
-                       <h1>Nome do aluno</h1>
-                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                       <h1>Nome do aluno - matricula do aluno</h1>
+                       <p>aula do aluno</p>
                    </div>
                    <div className="container-btns">
                        <motion.button whileHover={{scale: 1.08}}  className="delete-btn"><FontAwesomeIcon icon={faTrash} /> Deletar aluno</motion.button>
