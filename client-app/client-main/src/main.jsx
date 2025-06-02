@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './assets/routes/Home/Home.jsx'
 import Alunos from './assets/routes/Alunos/Alunos.jsx'
 import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx'
+import CreateItem from './assets/routes/CreateItem/CreateItem.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "alunos",
+        path: "/alunos",
         element: <Alunos />,
+      },
+        {
+        path: "/create",
+        element: <CreateItem />,
       },
       {
         path: "*",

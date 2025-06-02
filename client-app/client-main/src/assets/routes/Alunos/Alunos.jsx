@@ -1,10 +1,13 @@
 import React from 'react'
+import DefaultNavbar from '../../components/DefaultNavbar'
 import './Alunos.css'
 
 const Alunos = () => {
   return (
     <>
-      <h1>test</h1>
+      <section className="alunos-aulas">
+        <DefaultNavbar />
+      </section>
     </>
   )
 }
