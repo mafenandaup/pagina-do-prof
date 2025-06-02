@@ -11,11 +11,11 @@ import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // Define um layout principal ou container (opcional)
+    element: <App />, 
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true, // Define que essa é a rota padrão
+        index: true, 
         element: <Home />,
       },
       {

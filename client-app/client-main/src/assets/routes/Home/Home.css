@@ -34,8 +34,8 @@
 }
 
 .nav-home .link {
-    color: var(--baby-powder); 
-    background: none; 
+    color: var(--baby-powder);
+    background: none;
     text-decoration: none;
     font-size: 1rem;
     transition: color ease-in-out 0.3s;
@@ -43,6 +43,25 @@
 
 .link:hover {
     cursor: pointer;
-    text-decoration:underline;
     color: var(--process-cyan);
+}
+
+.additem-btn {
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    border: solid var(--baby-powder) 1px;
+    transition: color ease-in-out 0.2s;
+    color: var(--federal-blue);
+    background-color: var(--baby-powder);
+
+    width: 10rem;
+    height: 2rem;
+}
+
+.additem-btn:hover {
+    cursor: pointer;
+    color: var(--process-cyan);
+    background-color: var(--federal-blue);
+    border: solid var(--process-cyan) 1px;
+    text-align: center;
 }
