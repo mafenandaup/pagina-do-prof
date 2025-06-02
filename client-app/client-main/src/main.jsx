@@ -10,29 +10,32 @@ import ErrorPage from './assets/routes/ErrorPage/ErrorPage.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/home",
-    element: <App />,
+    path: "/",
+    element: <App />, // Define um layout principal ou container (opcional)
     errorElement: <ErrorPage />,
     children: [
-    
       {
-        path: "/alunos",
-        element: <Alunos />
-      },
-      {
-        path: "/home",
+        index: true, // Define que essa é a rota padrão
         element: <Home />,
       },
       {
+        path: "alunos",
+        element: <Alunos />,
+      },
+      {
         path: "*",
-        element: <ErrorPage />
-      }
-    ]
-  }
-])
+        element: <ErrorPage />,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
 )
+
+
+export default router;
+
