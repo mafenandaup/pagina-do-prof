@@ -10,10 +10,10 @@
 
 .home-aulas {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     background-color: var(--baby-powder);
-    flex-direction: column-reverse;
     width: 54rem;
     height: 36rem;
     border-radius: 20px;
@@ -26,10 +26,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 3rem;
+    height: 4rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 0 1rem;
+    padding: 0 0rem;
 
 }
 

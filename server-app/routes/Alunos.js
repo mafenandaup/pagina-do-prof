@@ -42,7 +42,7 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
     const { nome, email, aulaId } = req.body;
     const { varID } = req.params
     const alunoAtualizado = await prisma.aluno.update({
-      where: { varID },
+     where: { matricula: varID },
       data: {
         nome,
         email,
@@ -56,10 +56,12 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
   }
 });
 
-alunoRoutes.patch('/alunos:varID', async (req, res) => {
+alunoRoutes.patch('/alunos/:varID', async (req, res) => {
   try {
+     const { varID } = req.params;
+    const { nome, email, aulaId } = req.body;
     const alunoAtualizado = await prisma.aluno.update({
-      where: { matricula: varID },
+     where: { matricula: varID },
       data: {
         ...(nome && { nome }),
         ...(email && { email }),  // dados atualizados apenas com dados fornecidos
@@ -72,11 +74,11 @@ alunoRoutes.patch('/alunos:varID', async (req, res) => {
   }
 });
 
-alunoRoutes.delete('/alunos:varID', async (req, res) => {
+alunoRoutes.delete('/alunos/:varID', async (req, res) => {
   const { varID } = req.params
   try {
     await prisma.aluno.delete({
-      where: { varID }
+     where: { matricula: varID },
     });
     res.status(200).json(req.body)
   } catch (error) {

@@ -8,7 +8,6 @@ const Home = () => {
     <>
       <section className="home-aulas">
         <DefaultNavbar />
-        <h1>Home</h1>
       </section>
     </>
   )

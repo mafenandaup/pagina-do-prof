@@ -90,7 +90,7 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
 });
 
 
-aulaRoutes.delete('/aulas:varID', async (req, res) => {
+aulaRoutes.delete('/aulas/:varID', async (req, res) => {
   try {
     const { varID } = req.params;
     await prisma.aula.delete({
