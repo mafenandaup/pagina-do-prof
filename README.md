@@ -1,10 +1,13 @@
 # Página do Professor
 
+Esse projeto é uma repaginação do projeto "Aulas", feito pelo professor Marcos Dessa. Ele permite a visualização de aulas, alunos e a associação de cada aluno com uma aula. Feita para o estudo de React router, MPA's, rotas em Node.JS e Banco de Dados Relacional (MongoDB)
+
 ## Features
 
-- Tradução instantânea de frases informais para linguagem corporativa.
-- Interface simples e intuitiva, desenvolvida com React e estilizada com animações usando Framer Motion.
-- Backend (Node.js) e integração com a API do Gemini AI para traduções de alta qualidade.
+- Interface intuitiva e responsiva, utiliza ícones para a associação visual de funções.
+- Gerenciamentos de aulas e alunos no Backend com métodos CRUD
+- Integração a modelos de banco de dados relacionais (MongoDB).
+- Arquitetura de rotas baseada em React Router, garantindo fácil navegação e separação de responsabilidades.
 
 
 ## Pré-requisitos
@@ -40,8 +43,8 @@ Siga os passos abaixo para instalar e configurar o projeto:
 
  1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/corporate-translator.git
-cd corporate-translator
+git clone https://github.com/mafenandaup/pagina-do-prof.git
+cd pagina-do-prof
 ```
 
  2. Instale as dependências no back end:
@@ -70,3 +73,6 @@ node --watch index.js
 npm run dev
 ```
 ---
+
+## Contato
+Para tratar questões relacionadas a tratamento de erros ou em relação ao uso deste software, entre em contato via mariafernandapmaia@gmail.com .
