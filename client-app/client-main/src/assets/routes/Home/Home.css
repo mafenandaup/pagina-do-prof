@@ -17,12 +17,10 @@
     width: 54rem;
     height: 36rem;
     border-radius: 20px;
+    border: solid var(--federal-blue) 4px;
     overflow-y: auto;
     overflow-x: hidden;
-
-
 }
-
 .nav-home {
     width: 100%;
     background-color: var(--federal-blue);

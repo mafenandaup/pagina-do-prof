@@ -1,0 +1,77 @@
+:root {
+    --federal-blue: #03045eff;
+    --marian-blue: #023e8aff;
+    --process-cyan: #48acd3ff;
+    --non-photo-blue: #90e0efff;
+    --light-cyan: rgb(169, 213, 222);
+    --baby-powder: rgb(232, 233, 228);
+    --night: #121212ff;
+}
+
+.forms-display {
+    display: flex;
+    flex-direction: row;
+    gap: 8rem;
+}
+.page-display {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.return-btn{
+    display: flex;
+    flex-direction: row;
+}
+
+.main-container {
+    background-color: var(--baby-powder);
+    width: 26rem;
+    height: 26rem;
+    padding: 1.4REM;
+    border-radius: 20px;
+    border: solid var(--federal-blue) 4px;
+    display: flex;
+    flex-direction: column;
+
+
+    && h1 {
+        color: var(--federal-blue);
+        font-weight: 800;
+        font-size: 2rem;
+    }
+}
+
+form{
+    display:  flex;
+    flex-direction: column;
+    height: 100%;
+
+    && label{
+        color: var(--federal-blue);
+        margin-top: 20PX;
+    }
+
+    && input{
+        padding: 0.4rem;
+    }
+}
+
+.btns-form{
+    background-color: aquamarine;
+    padding: 1rem;
+    display: flex;
+    align-self: center;
+    justify-content:center;
+     margin-top: 20PX;
+     gap: 1rem;
+     
+
+     && button{
+        padding: 6px;
+        border-radius: 4px;
+        
+     }
+}
