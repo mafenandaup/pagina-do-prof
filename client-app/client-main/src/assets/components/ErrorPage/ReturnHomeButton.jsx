@@ -9,7 +9,7 @@ const ReturnHomeButton = () => {
     return (
         <>
             <Link to="/">
-                <motion.button className='return-home-btn' whileHover={{scale: 1.1}}>Voltar ao Início <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon></motion.button>
+                <motion.button className='return-home-btn' whileTap={{scale:0.9}} whileHover={{scale: 1.1}}>Voltar ao Início <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon></motion.button>
             </Link>
         </>
     )
