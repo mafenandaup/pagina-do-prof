@@ -21,20 +21,17 @@ aulaRoutes.get('/aulas', async (req, res) => {
 
 aulaRoutes.post('/aulas', async (req, res) => {
   try {
-    const { materia, topico, horario, alunos } = req.body;
+    const { materia, topico, horario } = req.body;
     const novaAula = await prisma.aula.create({
       data: {
         materia,
         topico,
         horario: new Date(horario),
-        alunos: {
-          connect: alunos.map(id => ({ id }))
-        }
-      }
+      },
     });
     res.status(201).json(req.body);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar aluno.' });
+    res.status(500).json({ error: 'Erro ao criar aula.' });
   }
 });
 
@@ -57,8 +54,13 @@ aulaRoutes.put('/aulas/:varID', async (req, res) => { //os dois pontos indicam v
 
     res.status(201).json(req.body);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao atualizar aula.' });
+    if (varID == null || varID != Number) {
+      console.error(error);
+      res.status(400).json({ error: 'Erro: dados inválidos' });
+    } else {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao atualizar aula.' });
+    }
   }
 })
 
@@ -84,8 +86,13 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
 
     res.status(201).json(req.body);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao atualizar aula.' });
+    if (varID == null || varID != Number) {
+      console.error(error);
+      res.status(400).json({ error: 'Erro: dados inválidos' });
+    } else {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao atualizar aula.' });
+    }
   }
 });
 
@@ -96,10 +103,15 @@ aulaRoutes.delete('/aulas/:varID', async (req, res) => {
     await prisma.aula.delete({
       where: { id: varID },
     });
-    res.status(201).json(req.body);
+    res.status(204).json(req.body);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao deletar aula.' });
+    if (varID == null || varID != Number) {
+      console.error(error);
+      res.status(400).json({ error: 'Erro: dados inválidos' });
+    } else {
+      console.error(error);
+      res.status(500).json({ error: 'Erro: aula não existe.' });
+    }
   }
 });
 

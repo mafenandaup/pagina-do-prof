@@ -28,7 +28,9 @@ alunoRoutes.post('/alunos', async (req, res) => {
       data: {
         nome,
         email,
-        aulaId
+         aulas: {
+          connect: { id: aulaId }, //conecta o aluno via aula
+        },
       }
     });
     res.status(201).json(req.body);
@@ -80,7 +82,7 @@ alunoRoutes.delete('/alunos/:varID', async (req, res) => {
     await prisma.aluno.delete({
      where: { matricula: varID },
     });
-    res.status(200).json(req.body)
+    res.status(204).json(req.body)
   } catch (error) {
     res.status(500).json('Erro ao deletar aluno')
   }
