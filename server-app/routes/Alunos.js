@@ -10,7 +10,6 @@ alunoRoutes.use(express.json());
 alunoRoutes.use(cors());
 
 
-
 alunoRoutes.get('/alunos', async (req, res) => {
   try {
     const alunos = await prisma.aluno.findMany();
@@ -54,16 +53,21 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
 
     res.status(201).json(req.body);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar o aluno.' });
+    if (!varID || isNaN(Number(varID))) {
+      console.error(error);
+      res.status(400).json({ error: 'ID inválido.' });
+    } else {
+      res.status(500).json('Erro ao deletar aluno')
+    }
   }
 });
 
 alunoRoutes.patch('/alunos/:varID', async (req, res) => {
   try {
-     const { varID } = req.params;
+    const { varID } = req.params;
     const { nome, email, aulaId } = req.body;
     const alunoAtualizado = await prisma.aluno.update({
-     where: { matricula: varID },
+      where: { matricula: varID },
       data: {
         ...(nome && { nome }),
         ...(email && { email }),  // dados atualizados apenas com dados fornecidos
@@ -72,7 +76,12 @@ alunoRoutes.patch('/alunos/:varID', async (req, res) => {
     });
     res.status(200).json(req.body);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar o aluno.' });
+    if (!varID || isNaN(Number(varID))) {
+      console.error(error);
+      res.status(400).json({ error: 'ID inválido.' });
+    } else {
+      res.status(500).json('Erro ao deletar aluno')
+    }
   }
 });
 
@@ -84,7 +93,12 @@ alunoRoutes.delete('/alunos/:varID', async (req, res) => {
     });
     res.status(204).json(req.body)
   } catch (error) {
-    res.status(500).json('Erro ao deletar aluno')
+    if (!varID || isNaN(Number(varID))) {
+      console.error(error);
+      res.status(400).json({ error: 'ID inválido.' });
+    } else {
+      res.status(500).json('Erro ao deletar aluno')
+    }
   }
 })
 

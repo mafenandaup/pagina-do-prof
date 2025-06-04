@@ -54,9 +54,9 @@ aulaRoutes.put('/aulas/:varID', async (req, res) => { //os dois pontos indicam v
 
     res.status(201).json(req.body);
   } catch (error) {
-    if (varID == null || varID != Number) {
+    if (!varID || isNaN(Number(varID))) {
       console.error(error);
-      res.status(400).json({ error: 'Erro: dados inválidos' });
+      res.status(400).json({ error: 'ID inválido.' });
     } else {
       console.error(error);
       res.status(500).json({ error: 'Erro ao atualizar aula.' });
@@ -75,20 +75,15 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
         ...(materia && { materia }),
         ...(topico && { topico }),
         ...(horario && { horario: new Date(horario) }), // necessário instanciar para converter a string em um obeto date.
-
-        ...(alunos && {
-          alunos: {
-            connect: alunos.map((id) => ({ id })),   // conecta a um array de alunos associados a essa aula; associa registros de uma tabela a registros de outra.
-          },
-        }),// essas instâncias são necessárias para garantir portabilidade, integridade dos dados e compatibilidade para o prisma(padroniza a manipulação de dados.)
+// essas instâncias são necessárias para garantir portabilidade, integridade dos dados e compatibilidade para o prisma(padroniza a manipulação de dados.)
       },
     });
 
     res.status(201).json(req.body);
   } catch (error) {
-    if (varID == null || varID != Number) {
+  if (!varID || isNaN(Number(varID))) {
       console.error(error);
-      res.status(400).json({ error: 'Erro: dados inválidos' });
+      res.status(400).json({ error: 'ID inválido.' });
     } else {
       console.error(error);
       res.status(500).json({ error: 'Erro ao atualizar aula.' });
@@ -105,9 +100,9 @@ aulaRoutes.delete('/aulas/:varID', async (req, res) => {
     });
     res.status(204).json(req.body);
   } catch (error) {
-    if (varID == null || varID != Number) {
+   if (!varID || isNaN(Number(varID))) {
       console.error(error);
-      res.status(400).json({ error: 'Erro: dados inválidos' });
+      res.status(400).json({ error: 'ID inválido.' });
     } else {
       console.error(error);
       res.status(500).json({ error: 'Erro: aula não existe.' });
