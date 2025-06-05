@@ -15,17 +15,27 @@ datasource db {
 }
 
 model Aula {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId 
-  materia   String   @db.String
-  topico    String   @db.String
-  horario   DateTime @default(now())
-  alunos    Aluno[] 
+  id      String            @id @default(auto()) @map("_id") @db.ObjectId
+  materia String            @db.String
+  topico  String            @db.String
+  horario DateTime          @default(now())
+  alunos  RelateAulaAluno[] @relation("AulaToAluno")
 }
 
 model Aluno {
-  matricula       String   @id @default(auto()) @map("_id") @db.ObjectId 
-  email     String   @unique                      
-  nome      String   @db.String                   
-  aulaId    String   @db.ObjectId                
-  aula      Aula     @relation(fields: [aulaId], references: [id])
+  matricula String            @id @default(auto()) @map("_id") @db.ObjectId
+  email     String            @unique
+  nome      String            @db.String
+  aulas     RelateAulaAluno[] @relation("AlunoToAula") // cada relação aula-aluno associada com o ID desse aluno
+}
+
+model RelateAulaAluno {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId // id de cada relação entre uma aula e um aluno
+  aulaId  String @db.ObjectId
+  alunoId String @db.ObjectId
+
+  aula  Aula  @relation("AulaToAluno", fields: [aulaId], references: [id])
+  aluno Aluno @relation("AlunoToAula", fields: [alunoId], references: [matricula])
+
+  @@unique([aulaId, alunoId]) // Evita duplicatas na relação aula-aluno
 }
