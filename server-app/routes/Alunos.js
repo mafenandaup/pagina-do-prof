@@ -27,14 +27,19 @@ alunoRoutes.post('/alunos', async (req, res) => {
       data: {
         nome,
         email,
-         aulas: {
-          connect: { id: aulaId }, //conecta o aluno via aula
-        },
-      }
+      },
     });
+    if (aulaId) { //se o id da aula for fornecido
+      await prisma.relateAulaAluno.create({ //cria registro de uma relação aluno-aula na entidade RelateAulaAluno
+        data: {
+          alunoId: aluno.matricula, //a matricula do aluno já será autoincrementada no await.create
+          aulaId,
+        },
+      });
+    }
     res.status(201).json(req.body);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar o aluno.' });
+    res.status(500).json({ error: 'Erro ao criar o aluno.' });
   }
 });
 
@@ -43,7 +48,7 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
     const { nome, email, aulaId } = req.body;
     const { varID } = req.params
     const alunoAtualizado = await prisma.aluno.update({
-     where: { matricula: varID },
+      where: { matricula: varID },
       data: {
         nome,
         email,
@@ -61,6 +66,8 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
     }
   }
 });
+
+
 
 alunoRoutes.patch('/alunos/:varID', async (req, res) => {
   try {
@@ -89,7 +96,7 @@ alunoRoutes.delete('/alunos/:varID', async (req, res) => {
   const { varID } = req.params
   try {
     await prisma.aluno.delete({
-     where: { matricula: varID },
+      where: { matricula: varID },
     });
     res.status(204).json(req.body)
   } catch (error) {

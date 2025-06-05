@@ -19,6 +19,24 @@ aulaRoutes.get('/aulas', async (req, res) => {
   }
 })
 
+// rota para mostrar alunos com vínculo específico a essa aula:
+aulaRoutes.get('/aulas/:aulaId/alunos', async (req, res) => {
+  const { aulaId } = req.params;
+
+  try {
+    const alunos = await prisma.relateAulaAluno.findMany({
+      where: { aulaId },
+      include: { aluno: true }, // Inclui os dados do aluno na resposta
+    });
+
+    res.status(200).json(alunos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao buscar alunos da aula.' });
+  }
+});
+
+
 aulaRoutes.post('/aulas', async (req, res) => {
   try {
     const { materia, topico, horario } = req.body;
