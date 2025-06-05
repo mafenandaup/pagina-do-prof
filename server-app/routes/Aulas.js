@@ -64,9 +64,7 @@ aulaRoutes.put('/aulas/:varID', async (req, res) => { //os dois pontos indicam v
         materia,
         topico,
         horario: new Date(horario), // necessário instanciar para converter a string em um obeto date.
-        alunos: {
-          connect: alunos.map((id) => ({ id })),   // conecta a um array de alunos associados a essa aula; associa registros de uma tabela a registros de outra.
-        },// essas instâncias são necessárias para garantir portabilidade, integridade dos dados e compatibilidade para o prisma(padroniza a manipulação de dados.)
+        // os alunos já terão estabelecido a conexão por meio da tabela relateaulaaluno. 
       },
     });
 
