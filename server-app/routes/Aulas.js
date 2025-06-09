@@ -70,9 +70,8 @@ aulaRoutes.put('/aulas/:varID', async (req, res) => { //os dois pontos indicam v
 
     res.status(201).json(req.body);
   } catch (error) {
-    if (!varID || isNaN(Number(varID))) {
-      console.error(error);
-      res.status(400).json({ error: 'ID inválido.' });
+     if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       console.error(error);
       res.status(500).json({ error: 'Erro ao atualizar aula.' });
@@ -97,9 +96,8 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
 
     res.status(201).json(req.body);
   } catch (error) {
-  if (!varID || isNaN(Number(varID))) {
-      console.error(error);
-      res.status(400).json({ error: 'ID inválido.' });
+   if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       console.error(error);
       res.status(500).json({ error: 'Erro ao atualizar aula.' });
@@ -116,14 +114,17 @@ aulaRoutes.delete('/aulas/:varID', async (req, res) => {
     });
     res.status(204).json(req.body);
   } catch (error) {
-   if (!varID || isNaN(Number(varID))) {
-      console.error(error);
-      res.status(400).json({ error: 'ID inválido.' });
-    } else {
-      console.error(error);
-      res.status(500).json({ error: 'Erro: aula não existe.' });
+   if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
     }
+    
+    await prisma.aula.delete({
+      where: { id: varID },
+    });
+
+    res.status(204).send(); // 204 - Sem conteúdo
+    console.error('Erro ao deletar aula:', error);
+    res.status(500).json({ error: 'Erro interno do servidor.' });
   }
 });
-
 export default aulaRoutes;

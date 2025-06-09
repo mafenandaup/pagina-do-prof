@@ -30,7 +30,7 @@ const ItemAula = ({ aula , onDelete , onEdit }) => { //props p. funções e assi
                         whileHover={{ scale: 1.08 }}
                         whileTap={{scale: 0.9}}
                         className="edit-btn"
-                        onClick={onDelete}
+                        onClick={onEdit}
                     >
                         <FontAwesomeIcon icon={faPenToSquare} /> Editar aula
                     </motion.button>

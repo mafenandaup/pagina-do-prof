@@ -58,9 +58,8 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
 
     res.status(201).json(req.body);
   } catch (error) {
-    if (!varID || isNaN(Number(varID))) {
-      console.error(error);
-      res.status(400).json({ error: 'ID inválido.' });
+     if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       res.status(500).json('Erro ao deletar aluno')
     }
@@ -83,9 +82,8 @@ alunoRoutes.patch('/alunos/:varID', async (req, res) => {
     });
     res.status(200).json(req.body);
   } catch (error) {
-    if (!varID || isNaN(Number(varID))) {
-      console.error(error);
-      res.status(400).json({ error: 'ID inválido.' });
+    if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       res.status(500).json('Erro ao deletar aluno')
     }
@@ -100,9 +98,8 @@ alunoRoutes.delete('/alunos/:varID', async (req, res) => {
     });
     res.status(204).json(req.body)
   } catch (error) {
-    if (!varID || isNaN(Number(varID))) {
-      console.error(error);
-      res.status(400).json({ error: 'ID inválido.' });
+       if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       res.status(500).json('Erro ao deletar aluno')
     }

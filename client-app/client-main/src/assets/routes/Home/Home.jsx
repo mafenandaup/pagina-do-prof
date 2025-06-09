@@ -8,30 +8,32 @@ import { useState, useEffect } from 'react';
 
 const Home = () => {
 
-    const [aulas, setAulas] = useState([]);
-    
-async function getAulas() {
-  try {
-    const { data } = await api.get('/aulas');
-    console.log('Dados recebidos:', data);
-    setAulas(data);
-  } catch (error) {
-    console.error('Erro ao buscar aulas:', error.message);
-    console.error('Detalhes do erro:', error);
-  }
-}
+  const [aulas, setAulas] = useState([]);
 
-  // Função para deletar uma aula
-  async function deleteAula(aulaId) {
+  async function getAulas() {
     try {
-      await api.delete(`/aulas/${aulaId}`);
-      setAulas(aulas.filter((aula) => aula.id !== aulaId)); // Atualiza a lista localmente
+      const { data } = await api.get('/aulas');
+      console.log('Dados recebidos:', data);
+      setAulas(data);
     } catch (error) {
-      console.error('Erro ao deletar aula:', error);
+      console.error('Erro ao buscar aulas:', error.message);
+      console.error('Detalhes do erro:', error);
     }
   }
 
-useEffect(() => {
+  async function deleteAula(aulaId) {
+    try {
+      await api.delete(`/aulas/${aulaId}`);
+      setAulas(aulas.filter((aula) => aula.id !== aulaId)); // atualiza a lista localmente
+      console.log('ID recebido:', aulaId);
+    } catch (error) {
+      console.error('Erro ao deletar aula:', error);
+      console.log('ID recebido:', aulaId);
+
+    }
+  }
+
+  useEffect(() => {
     getAulas();
   }, []);
 
@@ -40,7 +42,9 @@ useEffect(() => {
       <section className="alunos-aulas">
         <DefaultNavbar />
         {aulas.map((aula) => (
-         <ItemAula key={aula.id} aula={aula} />
+          <ItemAula key={aula.id} aula={aula}
+            onDelete={() => deleteAula(aula.id)}
+          />
         ))}
       </section>
     </>
