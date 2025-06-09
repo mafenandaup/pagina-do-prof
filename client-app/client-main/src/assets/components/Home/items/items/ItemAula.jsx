@@ -7,21 +7,35 @@ import "./items.css";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react"
 
-const ItemAula = () => {
+const ItemAula = ({ aula , onDelete , onEdit }) => { //props p. funções e assimilação de dados.
+
     return (
         <>
-            <section className="item-container">
+            <motion.section  whileHover={{ scale: 1.02 }}   whileTap={{scale: 1}} className="item-container">
                 <figure className="icon"><FontAwesomeIcon icon={faBook} /></figure>
                 <div className="textbox">
-                    <h1>Nome da aula - data</h1>
-                    <p>topico da aula</p>
+                    <h1>{aula.materia} - {new Date(aula.horario).toLocaleDateString()}</h1>
+                    <p>{aula.topico}</p>
                 </div>
                 <div className="container-btns">
-                    <motion.button whileHover={{scale: 1.08}} className="delete-btn"><FontAwesomeIcon icon={faTrash} /> Deletar aula</motion.button>
-                    <motion.button whileHover={{scale: 1.08}} className="edit-btn"><FontAwesomeIcon icon={faPenToSquare}/> Editar aula</motion.button>
+                    <motion.button
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{scale: 0.9}}
+                        className="delete-btn"
+                        onClick={onDelete}
+                    >
+                        <FontAwesomeIcon icon={faTrash} /> Deletar aula
+                    </motion.button>
+                    <motion.button
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{scale: 0.9}}
+                        className="edit-btn"
+                        onClick={onDelete}
+                    >
+                        <FontAwesomeIcon icon={faPenToSquare} /> Editar aula
+                    </motion.button>
                 </div>
-                
-            </section>
+            </motion.section>
         </>
     )
 }

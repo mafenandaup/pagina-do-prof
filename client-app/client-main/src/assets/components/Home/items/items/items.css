@@ -18,7 +18,18 @@
     margin-top: 1rem;
     margin-bottom: 1.2rem;
     border-radius: 1rem;
-    justify-content: space-around;
+    justify-content: space-between;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.214));
+
+    && h1,
+    p {
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.214));
+    }
+
+}
+
+.item-container:hover {
+    cursor: pointer;
 }
 
 .icon {
@@ -29,11 +40,11 @@
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-     font-size: 2rem;
+    font-size: 2rem;
 
 }
 
-.container-btns{
+.container-btns {
 
     padding: 0.2rem;
     width: 7rem;
@@ -43,9 +54,9 @@
     gap: 0.6rem;
 }
 
-.delete-btn{
+.delete-btn {
     padding: 6px;
-   font-size: 0.8rem;
+    font-size: 0.8rem;
     width: 8rem;
     height: 2rem;
     color: crimson;
@@ -56,12 +67,11 @@
     justify-content: space-evenly;
     align-items: center;
     transition: color ease-in-out 0.5s;
-
 }
 
-.edit-btn{
+.edit-btn {
     padding: 6px;
-   font-size: 0.8rem;
+    font-size: 0.8rem;
     width: 8rem;
     height: 2rem;
     color: var(--baby-powder);
@@ -75,13 +85,14 @@
 
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
 }
-.delete-btn:hover{
+
+.delete-btn:hover {
     background-color: var(--baby-powder);
 }
 
-.edit-btn:hover{
+.edit-btn:hover {
     background-color: rgb(0, 44, 102);
 }
