@@ -21,17 +21,18 @@ const Home = () => {
     }
   }
 
-  async function deleteAula(aulaId) {
-    try {
-      await api.delete(`/aulas/${aulaId}`);
-      setAulas(aulas.filter((aula) => aula.id !== aulaId)); // atualiza a lista localmente
-      console.log('ID recebido:', aulaId);
-    } catch (error) {
-      console.error('Erro ao deletar aula:', error);
-      console.log('ID recebido:', aulaId);
-
-    }
+async function deleteAula(aulaId) {
+  try {
+    console.log('ID enviado para o backend:', aulaId);
+    await api.delete(`/aulas/${aulaId}`);
+    setAulas(aulas.filter((aula) => aula.id !== aulaId));
+    console.log('Aula deletada com sucesso.');
+  } catch (error) {
+    console.error('Erro ao deletar aula:', error);
+    console.log('ID recebido pelo frontend:', aulaId);
   }
+}
+
 
   useEffect(() => {
     getAulas();

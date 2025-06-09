@@ -113,18 +113,20 @@ aulaRoutes.delete('/aulas/:varID', async (req, res) => {
       where: { id: varID },
     });
     res.status(204).json(req.body);
-  } catch (error) {
-   if (!varID) {
+
+    if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
     }
-    
-    await prisma.aula.delete({
-      where: { id: varID },
-    });
+  
+      const deletedAula = await prisma.aula.delete({
+        where: { id: varID },
+      });
 
-    res.status(204).send(); // 204 - Sem conteúdo
-    console.error('Erro ao deletar aula:', error);
-    res.status(500).json({ error: 'Erro interno do servidor.' });
-  }
+      console.log('Aula deletada com sucesso:', deletedAula);
+      res.status(204).send();
+    } catch (error) {
+      console.error('Erro ao tentar deletar aula:', error.message);
+      res.status(500).json({ error: 'Erro interno do servidor.' });
+ }
 });
 export default aulaRoutes;
