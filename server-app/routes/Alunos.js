@@ -56,12 +56,12 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
       },
     });
 
-    res.status(201).json(req.body);
+    return res.status(200).json({ message: 'Aluno atualizado com sucesso.' });
   } catch (error) {
-     if (!varID) {
+    if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
-      res.status(500).json('Erro ao deletar aluno')
+      res.status(500).json('Erro ao atualizar aluno')
     }
   }
 });
@@ -69,8 +69,10 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam
 
 
 alunoRoutes.patch('/alunos/:varID', async (req, res) => {
+
+  const { varID } = req.params;
+
   try {
-    const { varID } = req.params;
     const { nome, email, aulaId } = req.body;
     const alunoAtualizado = await prisma.aluno.update({
       where: { matricula: varID },
@@ -80,30 +82,50 @@ alunoRoutes.patch('/alunos/:varID', async (req, res) => {
         ...(aulaId && { aulaId }),
       },
     });
-    res.status(200).json(req.body);
+    console.log('Aluno atualizado com sucesso:', alunoAtualizado);
+    return res.status(200).json({ message: 'Aluno atualizado com sucesso.' });
   } catch (error) {
     if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
-      res.status(500).json('Erro ao deletar aluno')
+      res.status(500).json('Erro ao atualizar aluno')
     }
   }
 });
 
 alunoRoutes.delete('/alunos/:varID', async (req, res) => {
-  const { varID } = req.params
+  const { varID } = req.params;
+
   try {
-    await prisma.aluno.delete({
+    if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
+    }
+
+    const alunoExists = await prisma.aluno.findUnique({
       where: { matricula: varID },
     });
-    res.status(204).json(req.body)
-  } catch (error) {
-       if (!varID) {
-      return res.status(400).json({ error: 'ID não fornecido.' });
-    } else {
-      res.status(500).json('Erro ao deletar aluno')
-    }
-  }
-})
 
-export default alunoRoutes; 
+    if (!alunoExists) {
+      return res.status(404).json({ error: 'Aluno não encontrado.' });
+    }
+
+    // remove registros relacionados na tabela RelateAulaAluno, evitando violar os requisitos existentes das relações.
+    await prisma.relateAulaAluno.deleteMany({
+      where: { alunoId: varID },
+    });
+
+    // Deleta o aluno
+    // Deleta o aluno
+    const alunoDeletado = await prisma.aluno.delete({
+      where: { matricula: varID },
+    });
+
+    console.log('Aluno deletado com sucesso:', alunoDeletado);
+    return res.status(200).json({ message: 'Aluno deletado com sucesso.' });
+  } catch (error) {
+    console.error('Erro ao deletar aluno:', error);
+    return res.status(500).json({ error: 'Erro ao deletar aluno.' });
+  }
+});
+
+export default alunoRoutes;

@@ -15,7 +15,7 @@ const ItemAula = ({ aula , onDelete , onEdit }) => { //props p. funções e assi
                 <figure className="icon"><FontAwesomeIcon icon={faBook} /></figure>
                 <div className="textbox">
                     <h1>{aula.materia} - {new Date(aula.horario).toLocaleDateString()}</h1>
-                    <p>{aula.topico}</p>
+                    <p>{aula.topico} - ID {aula.id} </p> 
                 </div>
                 <div className="container-btns">
                     <motion.button
