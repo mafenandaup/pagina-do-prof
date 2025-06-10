@@ -29,14 +29,14 @@ aulaRoutes.get('/aulas/:aulaId/alunos', async (req, res) => {
       include: { aluno: true }, // Inclui os dados do aluno na resposta
     });
 
-      // mapeia os dados dos alunos diretamente na resposta usando props
+    // mapeia os dados dos alunos diretamente na resposta usando props
     const alunoFormat = alunos.map(relacao => ({ //cada registro vai ser formatado para o display no front-end.
       id: relacao.aluno.matricula,
       nome: relacao.aluno.nome,
       email: relacao.aluno.email,
     }));
 
-    res.status(200).json(alunosFormatados); //res. com a lista de alunos associados a tal aula.
+    res.status(200).json(alunoFormat); //res. com a lista de alunos associados a tal aula.
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao buscar alunos da aula.' });
@@ -54,7 +54,7 @@ aulaRoutes.post('/aulas', async (req, res) => {
         horario: new Date(horario),
       },
     });
-    res.status(201).json(req.body);
+    return res.status(200).json({ message: 'Aula criada com sucesso.', aula: novaAula });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar aula.' });
   }
@@ -75,7 +75,7 @@ aulaRoutes.put('/aulas/:varID', async (req, res) => { //os dois pontos indicam v
       },
     });
 
-    res.status(201).json(req.body);
+    return res.status(200).json({ message: 'Aula atualizada com sucesso.', aula: aulaAtualizada });
   } catch (error) {
     if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
@@ -101,7 +101,7 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
       },
     });
 
-    res.status(201).json(req.body);
+    return res.status(200).json({ message: 'Aula atualizada com sucesso.', aula: aulaAtualizada });
   } catch (error) {
     if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
@@ -126,7 +126,7 @@ aulaRoutes.delete('/aulas/:varID', async (req, res) => {
       where: { aulaId: varID },
       data: { aulaId: null },
     });
-    console.log('Associações de alunos da aula' ,{varID}, 'se tornaram nulas.');
+    console.log('Associações de alunos da aula', { varID }, 'se tornaram nulas.');
 
     const deletedAula = await prisma.aula.delete({
       where: { id: varID },
