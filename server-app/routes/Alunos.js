@@ -23,7 +23,7 @@ alunoRoutes.get('/alunos', async (req, res) => {
 alunoRoutes.post('/alunos', async (req, res) => {
   try {
     const { nome, email, aulaId } = req.body;
-    const aluno = await prisma.aluno.create({
+    const alunoCriado = await prisma.aluno.create({
       data: {
         nome,
         email,
@@ -37,7 +37,7 @@ alunoRoutes.post('/alunos', async (req, res) => {
         },
       });
     }
-    res.status(201).json(req.body);
+ return res.status(200).json({ message: 'Aluno atualizado com sucesso.', aluno: alunoCriado });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar o aluno.' });
   }
@@ -96,7 +96,6 @@ alunoRoutes.put('/alunos/:varID', async (req, res) => {
 alunoRoutes.patch('/alunos/:varID', async (req, res) => {
 
   const { varID } = req.params;
-
   const { nome, email, aulaId } = req.body;
 
   // verifica a existência do ID no campo.
@@ -110,21 +109,22 @@ alunoRoutes.patch('/alunos/:varID', async (req, res) => {
       return res.status(404).json({ error: 'Aluno não encontrado.' });
     }
 
-    if (aulaId) {
-      const aulaExists = await prisma.aula.findUnique({ where: { id: aulaId } }); // verifica se a aula localizada existe na tabela de Aulas.
+     if (aulaId) {
+      const aulaExists = await prisma.aula.findUnique({
+        where: { id: aulaId }, // verifica se a aula localizada existe na tabela de Aulas.
+      });
       if (!aulaExists) {
-        return res.status(400).json({ error: 'Aula especificada não existe.' });
+        return res.status(400).json({ error: 'A aula especificada não existe.' });
       }
-    }
 
     // verifica onde atualizar a relação na tabela intermediária.
     //caso os campos não existam/não tenham relação, eles são criados.
-    await prisma.relateAulaAluno.upsert({
-      where: { aulaId_alunoId: { aulaId, alunoId: varID } },
-      update: {},
-      create: { aulaId, alunoId: varID },
-    });
-  
+         await prisma.relateAulaAluno.upsert({
+        where: { aulaId_alunoId: { aulaId, alunoId: varID } },
+        update: {},
+        create: { aulaId, alunoId: varID },
+      });
+    }
 
     //cria uma const para guardar os campos atualziados
     const alunoAtualizado = await prisma.aluno.update({
@@ -132,17 +132,15 @@ alunoRoutes.patch('/alunos/:varID', async (req, res) => {
       data: {
         ...(nome && { nome }),
         ...(email && { email }),
-        ...(aulaId && { aulaId }),
       },
     });
 
-    return res.status(200).json({ message: 'Aluno atualizado com sucesso.', aluno: alunoAtualizado });
+ return res.status(200).json({ message: 'Aluno atualizado com sucesso.', aluno: alunoAtualizado });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Erro ao atualizar aluno.' });
   }
 });
-
 
 
 alunoRoutes.delete('/alunos/:varID', async (req, res) => {

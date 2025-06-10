@@ -49,10 +49,9 @@ const Home = () => {
           <ItemAula
             key={aula.id}
             aula={aula}
-            onDelete={() => deleteAula(aula.id)} 
-            onClick={() => navigate(`/alunos/${aula.id}`)} 
+            onDelete={() => deleteAula(aula.id)}
+            onClick={() => navigate(`/alunos/${aula.id}`)}
           />
-
         ))}
       </section>
     </>
