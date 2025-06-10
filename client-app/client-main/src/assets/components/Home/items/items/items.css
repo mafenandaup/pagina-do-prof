@@ -26,6 +26,11 @@
         filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.214));
     }
 
+    && p{
+        font-size: 14px;
+        margin-top: 0.4rem;
+    }
+
 }
 
 .item-container:hover {

@@ -1,6 +1,6 @@
 # Página do Professor
 
-Esse projeto é uma repaginação do projeto "Aulas", feito pelo professor Marcos Dessa. Ele permite a visualização de aulas, alunos e a associação de cada aluno com uma aula. Feita para o estudo de React router, MPA's, rotas em Node.JS e Banco de Dados Relacional (MongoDB)
+Esse projeto é uma repaginação do projeto "Aulas", feito pelo professor feito pelo professor [Marcos Dessa](https://github.com/marcosdessaUCSal). Ele permite a visualização de aulas, alunos e a associação de cada aluno com uma aula. Feita para o estudo de React router, MPA's, rotas em Node.JS e Banco de Dados Relacional (MongoDB)
 
 ## Features
 
