@@ -14,7 +14,13 @@ const FormAula = ({ onCreateAula }) => {
 
    const handleSubmit = (e) => {
     e.preventDefault(); // previne o navegador de recarregar a página (que é o que acontece quando não existem funções associadas ao input de tipo submit)
-    onCreateAula(aula); // usa o método via prop
+  
+       if (!aula.materia || !aula.materia || !aula.horario) {
+      window.alert('Por favor, preencha todos os campos.');
+      return;
+     }
+     
+     onCreateAula(aula); // usa o método via prop
      setAula({ materia: '', topico: '', horario: '' }); // limpa campos pós envio
   };
 
