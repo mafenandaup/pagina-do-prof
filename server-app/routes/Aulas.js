@@ -29,7 +29,14 @@ aulaRoutes.get('/aulas/:aulaId/alunos', async (req, res) => {
       include: { aluno: true }, // Inclui os dados do aluno na resposta
     });
 
-    res.status(200).json(alunos);
+      // mapeia os dados dos alunos diretamente na resposta usando props
+    const alunoFormat = alunos.map(relacao => ({ //cada registro vai ser formatado para o display no front-end.
+      id: relacao.aluno.matricula,
+      nome: relacao.aluno.nome,
+      email: relacao.aluno.email,
+    }));
+
+    res.status(200).json(alunosFormatados); //res. com a lista de alunos associados a tal aula.
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao buscar alunos da aula.' });

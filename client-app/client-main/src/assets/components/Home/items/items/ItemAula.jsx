@@ -20,9 +20,12 @@ const ItemAula = ({ aula , onDelete , onEdit }) => { //props p. funções e assi
                 <div className="container-btns">
                     <motion.button
                         whileHover={{ scale: 1.08 }}
-                        whileTap={{scale: 0.9}}
+                        whileTap={{ scale: 0.9 }}
                         className="delete-btn"
-                        onClick={onDelete}
+                        onClick={(e) => {
+                            e.stopPropagation(); // Tratamento de erro (evita que seja acionado quando o ItemAula for clicado)
+                            onDelete(); 
+                        }}
                     >
                         <FontAwesomeIcon icon={faTrash} /> Deletar aula
                     </motion.button>
@@ -30,7 +33,10 @@ const ItemAula = ({ aula , onDelete , onEdit }) => { //props p. funções e assi
                         whileHover={{ scale: 1.08 }}
                         whileTap={{scale: 0.9}}
                         className="edit-btn"
-                        onClick={onEdit}
+                        onClick={(e) => {
+                            e.stopPropagation(); //mesma coisa p/ botão de edição
+                            onEdit(); 
+                        }}
                     >
                         <FontAwesomeIcon icon={faPenToSquare} /> Editar aula
                     </motion.button>
