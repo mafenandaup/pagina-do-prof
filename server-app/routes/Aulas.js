@@ -70,7 +70,7 @@ aulaRoutes.put('/aulas/:varID', async (req, res) => { //os dois pontos indicam v
 
     res.status(201).json(req.body);
   } catch (error) {
-     if (!varID) {
+    if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       console.error(error);
@@ -90,13 +90,13 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
         ...(materia && { materia }),
         ...(topico && { topico }),
         ...(horario && { horario: new Date(horario) }), // necessário instanciar para converter a string em um obeto date.
-// essas instâncias são necessárias para garantir portabilidade, integridade dos dados e compatibilidade para o prisma(padroniza a manipulação de dados.)
+        // essas instâncias são necessárias para garantir portabilidade, integridade dos dados e compatibilidade para o prisma(padroniza a manipulação de dados.)
       },
     });
 
     res.status(201).json(req.body);
   } catch (error) {
-   if (!varID) {
+    if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
     } else {
       console.error(error);
@@ -109,24 +109,27 @@ aulaRoutes.patch('/aulas/:varID', async (req, res) => {
 aulaRoutes.delete('/aulas/:varID', async (req, res) => {
   try {
     const { varID } = req.params;
-    await prisma.aula.delete({
-      where: { id: varID },
-    });
-    res.status(204).json(req.body);
+    console.log(' ID da aula excluída', varID);
 
     if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
     }
-  
-      const deletedAula = await prisma.aula.delete({
-        where: { id: varID },
-      });
 
-      console.log('Aula deletada com sucesso:', deletedAula);
-      res.status(204).send();
-    } catch (error) {
-      console.error('Erro ao tentar deletar aula:', error.message);
-      res.status(500).json({ error: 'Erro interno do servidor.' });
- }
+    await prisma.relateAulaAluno.updateMany({
+      where: { aulaId: varID },
+      data: { aulaId: null },
+    });
+    console.log('Associações de alunos da aula' ,{varID}, 'se tornaram nulas.');
+
+    const deletedAula = await prisma.aula.delete({
+      where: { id: varID },
+    });
+
+    console.log('Aula deletada com sucesso:', deletedAula);
+    res.status(204).json(req.body);
+  } catch (error) {
+    console.error('Erro ao tentar deletar aula:', error.message);
+    res.status(500).json({ error: 'Erro interno do servidor.' });
+  }
 });
 export default aulaRoutes;

@@ -31,10 +31,11 @@ model Aluno {
 
 model RelateAulaAluno {
   id      String @id @default(auto()) @map("_id") @db.ObjectId // id de cada relação entre uma aula e um aluno
-  aulaId  String @db.ObjectId
+ aulaId  String? @db.ObjectId // aulaId é opcional caso não hajam registros de alunos associados
+ // desse modo, não é necessário deletar em cascata.
   alunoId String @db.ObjectId
 
-  aula  Aula  @relation("AulaToAluno", fields: [aulaId], references: [id])
+  aula  Aula?  @relation("AulaToAluno", fields: [aulaId], references: [id])
   aluno Aluno @relation("AlunoToAula", fields: [alunoId], references: [matricula])
 
   @@unique([aulaId, alunoId]) // Evita duplicatas na relação aula-aluno
