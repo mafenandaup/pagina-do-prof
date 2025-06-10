@@ -72,3 +72,22 @@
     border: solid var(--process-cyan) 1px;
     text-align: center;
 }
+
+
+@media (max-width: 940px) {
+
+    .alunos-aulas {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--baby-powder);
+    width: 48rem;
+    height: 32rem;
+    border-radius: 20px;
+    border: solid var(--federal-blue) 4px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+}
+

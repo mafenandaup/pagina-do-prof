@@ -43,28 +43,53 @@ alunoRoutes.post('/alunos', async (req, res) => {
   }
 });
 
-alunoRoutes.put('/alunos/:varID', async (req, res) => { //os dois pontos indicam variável
-  try {
-    const { nome, email, aulaId } = req.body;
-    const { varID } = req.params
-    const alunoAtualizado = await prisma.aluno.update({
-      where: { matricula: varID },
-      data: {
-        nome,
-        email,
-        aulaId,
-      },
-    });
+//os dois pontos indicam variável
+alunoRoutes.put('/alunos/:varID', async (req, res) => {
+  const { varID } = req.params;
+  const { nome, email, aulaId } = req.body;
 
-    return res.status(200).json({ message: 'Aluno atualizado com sucesso.' });
-  } catch (error) {
+  // verifica a existência do ID no campo.
+  try {
     if (!varID) {
       return res.status(400).json({ error: 'ID não fornecido.' });
-    } else {
-      res.status(500).json('Erro ao atualizar aluno')
     }
+// verifica se o ID inserido existe na tabela de alunos (se o aluno existe)
+    const alunoExists = await prisma.aluno.findUnique({ where: { matricula: varID } });
+    if (!alunoExists) {
+      return res.status(404).json({ error: 'Aluno não encontrado.' });
+    }
+
+    // verifica se a aula relacionada ao aluno existe na tabela
+    if (aulaId) {
+      const aulaExists = await prisma.aula.findUnique({
+        where: { id: aulaId },
+      });
+      if (!aulaExists) {
+        return res.status(400).json({ error: 'A aula especificada não existe.' });
+      }
+
+    // verifica onde atualizar a relação na tabela intermediária.
+    //caso os campos não existam/não tenham relação, eles são criados.
+      await prisma.relateAulaAluno.upsert({
+        where: { aulaId_alunoId: { aulaId, alunoId: varID } },
+        update: {},
+        create: { aulaId, alunoId: varID },
+      });
+    }
+
+    //cria uma const para guardar os campos atualziados
+    const alunoAtualizado = await prisma.aluno.update({
+      where: { matricula: varID },
+      data: { nome, email },
+    });
+
+    return res.status(200).json({ message: 'Aluno atualizado com sucesso.', aluno: alunoAtualizado });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao atualizar aluno.' });
   }
 });
+
 
 
 
@@ -72,26 +97,53 @@ alunoRoutes.patch('/alunos/:varID', async (req, res) => {
 
   const { varID } = req.params;
 
+  const { nome, email, aulaId } = req.body;
+
+  // verifica a existência do ID no campo.
   try {
-    const { nome, email, aulaId } = req.body;
+    if (!varID) {
+      return res.status(400).json({ error: 'ID não fornecido.' });
+    }
+// verifica se o ID inserido existe na tabela de alunos (se o aluno existe)
+    const alunoExists = await prisma.aluno.findUnique({ where: { matricula: varID } });
+    if (!alunoExists) {
+      return res.status(404).json({ error: 'Aluno não encontrado.' });
+    }
+
+    if (aulaId) {
+      const aulaExists = await prisma.aula.findUnique({ where: { id: aulaId } }); // verifica se a aula localizada existe na tabela de Aulas.
+      if (!aulaExists) {
+        return res.status(400).json({ error: 'Aula especificada não existe.' });
+      }
+    }
+
+    // verifica onde atualizar a relação na tabela intermediária.
+    //caso os campos não existam/não tenham relação, eles são criados.
+    await prisma.relateAulaAluno.upsert({
+      where: { aulaId_alunoId: { aulaId, alunoId: varID } },
+      update: {},
+      create: { aulaId, alunoId: varID },
+    });
+  
+
+    //cria uma const para guardar os campos atualziados
     const alunoAtualizado = await prisma.aluno.update({
       where: { matricula: varID },
       data: {
         ...(nome && { nome }),
-        ...(email && { email }),  // dados atualizados apenas com dados fornecidos
+        ...(email && { email }),
         ...(aulaId && { aulaId }),
       },
     });
-    console.log('Aluno atualizado com sucesso:', alunoAtualizado);
-    return res.status(200).json({ message: 'Aluno atualizado com sucesso.' });
+
+    return res.status(200).json({ message: 'Aluno atualizado com sucesso.', aluno: alunoAtualizado });
   } catch (error) {
-    if (!varID) {
-      return res.status(400).json({ error: 'ID não fornecido.' });
-    } else {
-      res.status(500).json('Erro ao atualizar aluno')
-    }
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao atualizar aluno.' });
   }
 });
+
+
 
 alunoRoutes.delete('/alunos/:varID', async (req, res) => {
   const { varID } = req.params;

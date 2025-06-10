@@ -11,7 +11,7 @@
 .forms-display {
     display: flex;
     flex-direction: row;
-    gap: 8rem;
+    gap: 6rem;
 }
 .page-display {
     display: flex;
@@ -73,4 +73,65 @@ form{
         border-radius: 4px;
         
      }
+}
+
+
+@media (max-width: 1050px) {
+
+   .main-container {
+    width: 22rem;
+    height: 26rem;
+    padding: 2REM;
+
+    && h1 {
+        font-weight: 800;
+        font-size: 2rem;
+    }
+}
+}
+
+@media (max-width: 810px) {
+
+   .main-container {
+    width: 20rem;
+    height: 26rem;
+    padding: 1.6REM;
+
+    && h1 {
+        font-weight: 800;
+        font-size: 2rem;
+    }
+
+    .btns-form{
+    padding: 1rem;
+    display: flex;
+    align-self: center;
+    justify-content:center;
+     margin-top: 20PX;
+     gap: 1rem;
+     
+
+     && button{
+        padding: 3px;
+        border-radius: 4px;
+        
+     }
+}
+
+  
+}
+}
+
+@media (max-width: 740px) {
+
+
+  .forms-display {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 3rem;
+    justify-content: center;
+}
 }

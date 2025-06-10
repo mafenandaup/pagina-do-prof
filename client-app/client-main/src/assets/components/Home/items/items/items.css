@@ -60,14 +60,14 @@
 }
 
 .delete-btn {
-    padding: 6px;
+      padding: 0.5rem;
     font-size: 0.8rem;
     width: 8rem;
     height: 2rem;
     color: crimson;
     border: solid crimson 2px;
     background-color: rgba(2, 61, 138, 0);
-    border-radius: 12px;
+    border-radius: 0.5rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -75,14 +75,14 @@
 }
 
 .edit-btn {
-    padding: 6px;
+    padding: 0.5rem;
     font-size: 0.8rem;
     width: 8rem;
     height: 2rem;
     color: var(--baby-powder);
     background-color: var(--marian-blue);
     border: solid black 0px;
-    border-radius: 12px;
+    border-radius: 0.5rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -101,3 +101,45 @@ button:hover {
 .edit-btn:hover {
     background-color: rgb(0, 44, 102);
 }
+
+
+@media (max-width: 940px) {
+.item-container {
+    width: 40rem;
+    height: 6rem;
+    padding: 3rem;
+
+    && p{
+        font-size: 0.8rem;
+        margin-top: 0.4rem;
+    }
+      && h1{
+        font-size: 1rem;
+    }
+
+}
+
+.edit-btn {
+   font-size: 0.6rem;
+    width: 5.6rem;
+    height: 1.4rem;
+}
+
+.delete-btn {
+    font-size: 0.6rem;
+    width: 6rem;
+    height: 1.4rem;
+    
+}
+.icon {
+    width: 3.2rem;
+    height: 3rem;
+    font-size: 1.4rem;
+}
+.container-btns {
+    width: 4.4rem;
+    gap: 0.6rem;
+}
+   
+}
+
