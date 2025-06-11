@@ -1,0 +1,28 @@
+:root {
+    --federal-blue: #03045eff;
+    --marian-blue: #023e8aff;
+    --process-cyan: #48acd3ff;
+    --non-photo-blue: #90e0efff;
+    --light-cyan: rgb(169, 213, 222);
+    --baby-powder: rgb(232, 233, 228);
+    --night: #121212ff;
+}
+
+.popup-container {
+    background-color: var(--baby-powder);
+    width: 26rem;
+    height: 26rem;
+    padding: 1.4REM;
+    border-radius: 20px;
+    border: solid var(--federal-blue) 4px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+
+
+    && h1 {
+        color: var(--federal-blue);
+        font-weight: 800;
+        font-size: 2rem;
+    }
+}

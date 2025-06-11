@@ -5,6 +5,7 @@ import './Home.css'
 import ItemAula from '../../components/Home/items/items/ItemAula'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom' // importa o useNavigate para a navegação filtrada ao clicar em cada aula
+import PopUpAulas from '../../components/Home/EditInfoPopup/PopUpAulas'
 
 
 
@@ -54,6 +55,7 @@ const Home = () => {
           />
         ))}
       </section>
+        <PopUpAulas />
     </>
   )
 }

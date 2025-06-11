@@ -3,6 +3,7 @@ import DefaultNavbar from '../../components/DefaultNavbar'
 import ItemAluno from '../../components/Home/items/items/ItemAluno'
 import { useState, useEffect } from 'react';
 import api from '../../../services/api';
+import PopUpAlunos from '../../components/Home/EditInfoPopup/PopUpAlunos';
 
 
 const Alunos = () => {
@@ -45,8 +46,8 @@ async function deleteAluno(alunoId) {
             onDelete={() => deleteAluno(aluno.matricula)}
           />
         ))}
-
       </section>
+      <PopUpAlunos />
     </>
   );
 };
