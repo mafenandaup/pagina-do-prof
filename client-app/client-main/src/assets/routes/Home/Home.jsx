@@ -13,6 +13,9 @@ const Home = () => {
 
   const [aulas, setAulas] = useState([]);
   const navigate = useNavigate();
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // controla visibidade dos popups de edição
+  const [selectedAula, setSelectedAula] = useState(null); // dados para a aula selecionada para ser editada
+
 
   async function getAulas() {
     try {
@@ -37,6 +40,31 @@ const Home = () => {
     }
   }
 
+  async function updateAula(updatedAula) {
+    try {
+      await api.patch(`/aulas/${selectedAula.id}`, updatedAula);
+      setAulas((prevAulas) =>
+        prevAulas.map((aula) =>
+          aula.id === selectedAula.id ? { ...aula, ...updatedAula } : aula
+        )
+      );
+      console.log('Aula atualizada com sucesso!');
+    } catch (error) {
+      console.error('Erro ao atualizar aula:', error);
+    }
+  }
+
+ function openForm(aula) {
+  setSelectedAula(aula);
+   setIsPopupOpen(true);
+
+}
+
+  function closeForm() {
+  setSelectedAula(null);
+    setIsPopupOpen(false);
+}
+
 
   useEffect(() => {
     getAulas();
@@ -50,12 +78,20 @@ const Home = () => {
           <ItemAula
             key={aula.id}
             aula={aula}
+            onEdit={openForm}
             onDelete={() => deleteAula(aula.id)}
             onClick={() => navigate(`/aulas/${aula.id}/alunos`)}
+            onClose={closeForm}
           />
         ))}
       </section>
-        <PopUpAulas />
+      {isPopupOpen && (
+        <PopUpAulas
+          aula={selectedAula}
+          onClose={closeForm}
+          onUpdate={updateAula}
+        />
+      )}
     </>
   )
 }

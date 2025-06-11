@@ -8,6 +8,25 @@
     --night: #121212ff;
 }
 
+.closepopup {
+    color: var(--night);
+    display: flex;
+    font-weight: 800;
+    font-size: 22px;
+}
+
+.closepopup:hover {
+    cursor: pointer;
+    color: crimson;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .popup-container {
     background-color: var(--baby-powder);
     width: 26rem;
@@ -15,9 +34,16 @@
     padding: 1.4REM;
     border-radius: 20px;
     border: solid var(--federal-blue) 4px;
-    display: flex;
+    display: none;
     flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
 
 
     && h1 {

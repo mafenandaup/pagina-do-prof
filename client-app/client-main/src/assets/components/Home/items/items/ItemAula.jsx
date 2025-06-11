@@ -35,7 +35,7 @@ const ItemAula = ({ aula , onDelete , onEdit , onClick}) => { //props p. funçõ
                         className="edit-btn"
                         onClick={(e) => {
                             e.stopPropagation(); //mesma coisa p/ botão de edição
-                            onEdit(); 
+                            onEdit(aula); 
                         }}
                     >
                         <FontAwesomeIcon icon={faPenToSquare} /> Editar aula
