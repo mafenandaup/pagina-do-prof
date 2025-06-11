@@ -8,23 +8,33 @@ import "./items.css";
 import { motion } from "motion/react"
 
 
-const ItemAluno = () => {
-  return (
-   <>
-               <section className="item-container">
-                   <figure className="icon"><FontAwesomeIcon icon={faUser} /></figure>
-                   <div className="textbox">
-                       <h1>Nome do aluno - matricula do aluno</h1>
-                       <p>aula do aluno</p>
-                   </div>
-                   <div className="container-btns">
-                       <motion.button whileHover={{scale: 1.08}}  className="delete-btn"><FontAwesomeIcon icon={faTrash} /> Deletar aluno</motion.button>
-                       <motion.button whileHover={{scale: 1.08}} className="edit-btn"><FontAwesomeIcon icon={faPenToSquare}/> Editar aluno</motion.button>
-                   </div>
-                   
-               </section>
-           </>
-  )
+const ItemAluno = ({ aluno, onDelete, onEdit }) => {
+    return (
+        <>
+            <section className="item-container">
+                <figure className="icon"><FontAwesomeIcon icon={faUser} /></figure>
+                <div className="textbox">
+                    <h1>{aluno.nome} - {aluno.email}</h1>
+                    <p>(Matrícula : {aluno.matricula})</p>
+                </div>
+                <div className="container-btns">
+                    <motion.button whileHover={{ scale: 1.08 }} className="delete-btn" onClick={(e) => {
+                        e.stopPropagation();
+                        console.log('Clique no botão de deletar aluno com ID:', aluno.id); // Adicione este log
+                        onDelete();
+                    }}
+                    ><FontAwesomeIcon icon={faTrash} /> Deletar aluno</motion.button>
+                    <motion.button whileHover={{ scale: 1.08 }} className="edit-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onEdit();
+                        }}
+                    ><FontAwesomeIcon icon={faPenToSquare} /> Editar aluno</motion.button>
+                </div>
+
+            </section>
+        </>
+    )
 }
 
 export default ItemAluno

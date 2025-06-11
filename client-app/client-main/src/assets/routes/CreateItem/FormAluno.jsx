@@ -27,8 +27,9 @@ const FormAluno = ({ onCreateAluno }) => {
       return;
     }
 
+     window.alert('Aluno criado com sucesso!');
     onCreateAluno(aluno);
-    setAluno({ nome: '', email: '', aulaId: '' }); // limpa campos pós envio
+    setAluno({ nome: '', email: '', aulaId: '' }); 
   };
 
   const handleChange = (e) => {

@@ -7,11 +7,11 @@ import "./items.css";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react"
 
-const ItemAula = ({ aula , onDelete , onEdit }) => { //props p. funções e assimilação de dados.
+const ItemAula = ({ aula , onDelete , onEdit , onClick}) => { //props p. funções e assimilação de dados.
 
     return (
         <>
-            <motion.section  whileHover={{ scale: 1.02 }}   whileTap={{scale: 1}} className="item-container">
+            <motion.section  whileHover={{ scale: 1.02 }}   whileTap={{scale: 1}} className="item-container" onClick={onClick}>
                 <figure className="icon"><FontAwesomeIcon icon={faBook} /></figure>
                 <div className="textbox">
                     <h1>{aula.materia} - {new Date(aula.horario).toLocaleDateString()}</h1>

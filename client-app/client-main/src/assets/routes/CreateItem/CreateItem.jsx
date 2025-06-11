@@ -23,8 +23,8 @@ async function createAluno(aluno) {
   try {
     const alunoCriado = await api.post('/alunos', aluno);
     console.log('Aluno criado com sucesso:', alunoCriado.data);
-    window.alert('aluno criado com sucesso!')
-
+    window.alert('Aluno criado com sucesso!');
+    
   } catch (error) {
     console.error('Erro ao criar aluno:', error);
   }
@@ -35,7 +35,7 @@ const CreateItem = () => {
       <div className="page-display">
         <div className="forms-display">
           <FormAula onCreateAula={createAula} />
-          <FormAluno onCreateAluno={createAluno} />
+         <FormAluno onCreateAluno={createAluno} />
         </div>
         <ReturnHomeButton />
       </div>

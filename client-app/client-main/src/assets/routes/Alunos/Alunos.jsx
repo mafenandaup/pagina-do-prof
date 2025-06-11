@@ -1,36 +1,51 @@
 import React from 'react'
 import DefaultNavbar from '../../components/DefaultNavbar'
 import ItemAluno from '../../components/Home/items/items/ItemAluno'
-import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import api from '../../../services/api';
 
 
 const Alunos = () => {
 
-  const { aulaId } = useParams();
   const [alunos, setAlunos] = useState([]);
 
-    useEffect(() => {
-      async function getAlunos() {
-      try {
-        const { data } = await api.get(`/aulas/${aulaId}/alunos`); // Chama o endpoint
-        setAlunos(data);
-      } catch (error) {
-        console.error('Erro ao buscar alunos:', error.message);
-      }
+  async function getAlunosAll() {
+    try {
+      const { data } = await api.get('/alunos');
+      console.log('Dados recebidos do backend:', data);
+      setAlunos(data);
+    } catch (error) {
+      console.error('Erro ao buscar todos os alunos:', error.message);
     }
+  }
 
-    getAlunos();
-  }, [aulaId]);
+async function deleteAluno(alunoId) {
+  try {
+    console.log('ID enviado para o backend:', alunoId);
+    await api.delete(`/alunos/${alunoId}`); 
+    await getAlunosAll();
+    console.log('Aluno deletado com sucesso.');
+  } catch (error) {
+    console.error('Erro ao deletar aluno:', error.message);
+    console.log('ID recebido pelo frontend:', alunoId);
+  }
+}
 
+  useEffect(() => {
+    getAlunosAll();
+  }, []);
   return (
     <>
       <section className="alunos-aulas">
         <DefaultNavbar />
         {alunos.map((aluno) => (
-          <ItemAluno key={aluno.id} aluno={aluno} />
+          <ItemAluno
+            key={aluno.matricula}
+            aluno={aluno}
+            onDelete={() => deleteAluno(aluno.matricula)}
+          />
         ))}
+
       </section>
     </>
   );

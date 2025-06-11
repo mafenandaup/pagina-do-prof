@@ -50,7 +50,7 @@ const Home = () => {
             key={aula.id}
             aula={aula}
             onDelete={() => deleteAula(aula.id)}
-            onClick={() => navigate(`/alunos/${aula.id}`)}
+            onClick={() => navigate(`/aulas/${aula.id}/alunos`)}
           />
         ))}
       </section>
