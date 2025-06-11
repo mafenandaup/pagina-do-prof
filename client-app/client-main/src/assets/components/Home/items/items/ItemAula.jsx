@@ -14,7 +14,7 @@ const ItemAula = ({ aula , onDelete , onEdit , onClick}) => { //props p. funçõ
             <motion.section  whileHover={{ scale: 1.02 }}   whileTap={{scale: 1}} className="item-container" onClick={onClick}>
                 <figure className="icon"><FontAwesomeIcon icon={faBook} /></figure>
                 <div className="textbox">
-                    <h1>{aula.materia} - {new Date(aula.horario).toLocaleDateString()}</h1>
+                   <span className='destaque'><h1>{aula.materia} - {new Date(aula.horario).toLocaleDateString()}</h1></span> 
                     <p>{aula.topico} (ID: {aula.id}) </p> 
                 </div>
                 <div className="container-btns">

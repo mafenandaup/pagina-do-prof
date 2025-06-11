@@ -14,7 +14,7 @@ const ItemAluno = ({ aluno, onDelete, onEdit }) => {
             <section className="item-container">
                 <figure className="icon"><FontAwesomeIcon icon={faUser} /></figure>
                 <div className="textbox">
-                    <h1>{aluno.nome} - {aluno.email}</h1>
+                   <span className='destaque'> <h1>{aluno.nome} - {aluno.email}</h1></span>
                     <p>(Matrícula : {aluno.matricula})</p>
                 </div>
                 <div className="container-btns">

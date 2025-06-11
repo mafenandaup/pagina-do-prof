@@ -17,9 +17,12 @@
     align-items: center;
     margin-top: 1rem;
     margin-bottom: 1.2rem;
+    border: solid var(--process-cyan) 2px;
     border-radius: 1rem;
     justify-content: space-between;
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.214));
+    color: var(--marian-blue);
+    text-align: left;
 
     && h1,
     p {
@@ -31,6 +34,10 @@
         margin-top: 0.4rem;
     }
 
+}
+
+.destaque{
+    color: var(--federal-blue);
 }
 
 .item-container:hover {
@@ -46,6 +53,7 @@
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+    color: var(--baby-powder);
 
 }
 
