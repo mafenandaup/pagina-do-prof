@@ -43,11 +43,11 @@ const FormAluno = ({ onCreateAluno }) => {
         <h1>Novo aluno</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="nome">Nome do aluno</label>
-          <input type="text" id='nome' value={aluno.nome} onChange={handleChange} placeholder='EX: João da silva...' />
+          <input type="text" id='nome' value={aluno.nome} onChange={handleChange} placeholder='EX: João da silva...' required/>
           <label htmlFor="email">Email do Aluno</label>
-          <input type="email" id="email" value={aluno.email} onChange={handleChange} placeholder='fulanodetal.sobrenome@ucsal.edu.br' />
+          <input type="email" id="email" value={aluno.email} onChange={handleChange} placeholder='fulanodetal.sobrenome@ucsal.edu.br' required/>
           <label htmlFor="class-date">ID da matéria correspondente</label>
-          <input type="text" id='aulaId' value={aluno.aulaId} onChange={handleChange} placeholder='EX: 20239439053' />
+          <input type="text" id='aulaId' value={aluno.aulaId} onChange={handleChange} placeholder='EX: 20239439053' required/>
           <div className="btns-form">
             <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='edit-btn' type="submit">Criar aluno</motion.button>
             <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='delete-btn' type="reset">Limpar campos</motion.button>

@@ -16,9 +16,9 @@ const PopUpAulas = () => {
         <h1>Editar aula</h1>
         <form>
           <label htmlFor="materia">Nome da matéria</label>
-          <input type="text" id='materia' value={'Programação web'} placeholder='EX: Programação Orientada a Objetos..' />
+          <input type="text" id='materia' value={'Programação web'} placeholder='EX: Programação Orientada a Objetos..' required />
            <label htmlFor="topico">Tópico da matéria</label>
-          <input type="text" id='topico' value={'Introdução ao Springboot'} placeholder='EX: Introdução ao Springboot..' />
+          <input type="text" id='topico' value={'Introdução ao Springboot'} placeholder='EX: Introdução ao Springboot..' required />
            <label htmlFor="horario">Data da aula</label>
                   <input type="date" id='horario' placeholder='EX: Programação Orientada a Objetos..' />
                    <div className="btns-form">

@@ -35,11 +35,11 @@ const FormAula = ({ onCreateAula }) => {
         <h1>Nova aula</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="materia">Nome da matéria</label>
-          <input type="text" id='materia' value={aula.materia} onChange={handleChange} placeholder='EX: Programação Orientada a Objetos..' />
+          <input type="text" id='materia' value={aula.materia} onChange={handleChange} placeholder='EX: Programação Orientada a Objetos..' required/>
            <label htmlFor="topico">Tópico da matéria</label>
-          <input type="text" id='topico' value={aula.topico} onChange={handleChange} placeholder='EX: Introdução ao Springboot..' />
+          <input type="text" id='topico' value={aula.topico} onChange={handleChange} placeholder='EX: Introdução ao Springboot..' required/>
            <label htmlFor="horario">Data da aula</label>
-          <input type="date" id='horario' value={aula.horario} onChange={handleChange} placeholder='EX: Programação Orientada a Objetos..' />
+          <input type="date" id='horario' value={aula.horario} onChange={handleChange} placeholder='EX: Programação Orientada a Objetos..' required />
           <div className="btns-form">
             <motion.button whileHover={{scale:1.08}} whileTap={{scale:1}} className='edit-btn'  type="submit">Criar aula</motion.button>
             <motion.button whileHover={{scale:1.08}} whileTap={{scale:1}} className='delete-btn' type="reset" onClick={() => setAula({ materia: '', topico: '', horario: '' })}>Limpar campos</motion.button>

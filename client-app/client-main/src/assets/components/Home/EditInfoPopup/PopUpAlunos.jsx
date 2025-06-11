@@ -11,9 +11,9 @@ const PopUpAlunos = () => {
          <h1>Edit aluno</h1>
                 <form>
                   <label htmlFor="nome">Nome do aluno</label>
-                  <input type="text" id='nome' value={'nome random'}  placeholder='EX: João da silva...' />
+                  <input type="text" id='nome' value={'nome random'}  placeholder='EX: João da silva...' required />
                   <label htmlFor="email">Email do Aluno</label>
-                  <input type="email" id="email"  placeholder='fulanodetal.sobrenome@ucsal.edu.br' />
+                  <input type="email" id="email"  placeholder='fulanodetal.sobrenome@ucsal.edu.br' required/>
                   <label htmlFor="class-date">ID da matéria correspondente</label>
                   <input type="text" id='aulaId'  placeholder='EX: 20239439053' />
                   <div className="btns-form">
