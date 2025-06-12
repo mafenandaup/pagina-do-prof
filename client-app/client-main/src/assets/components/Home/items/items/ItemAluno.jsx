@@ -9,6 +9,9 @@ import { motion } from "motion/react"
 
 
 const ItemAluno = ({ aluno, onDelete, onEdit }) => {
+
+    console.log('Props recebidas pelo ItemAluno:', aluno);
+
     return (
         <>
             <section className="item-container">
@@ -20,7 +23,7 @@ const ItemAluno = ({ aluno, onDelete, onEdit }) => {
                 <div className="container-btns">
                     <motion.button whileHover={{ scale: 1.08 }} className="delete-btn" onClick={(e) => {
                         e.stopPropagation();
-                        console.log('Clique no botão de deletar aluno com ID:', aluno.id); // Adicione este log
+                        console.log('Clique no botão de deletar aluno com ID:', aluno.matricula); // Adicione este log
                         onDelete();
                     }}
                     ><FontAwesomeIcon icon={faTrash} /> Deletar aluno</motion.button>

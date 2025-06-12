@@ -23,8 +23,8 @@ const PopUpAlunos = ({ aluno, onClose, onUpdate }) => {
     }, [aluno]);
 
     const handleInputChange = (e) => {
-        const { id, value } = e.target;
-        setalunosData({ ...alunoData, [id]: value });
+        const { matricula, value } = e.target;
+        setalunosData({ ...alunoData, [matricula]: value });
     };
 
     const handleSubmit = async (e) => {

@@ -31,7 +31,7 @@ aulaRoutes.get('/aulas/:aulaId/alunos', async (req, res) => {
 
     // mapeia os dados dos alunos diretamente na resposta usando props
     const alunoFormat = alunos.map(relacao => ({ //cada registro vai ser formatado para o display no front-end.
-      id: relacao.aluno.matricula,
+      alunoId: relacao.aluno.matricula,
       nome: relacao.aluno.nome,
       email: relacao.aluno.email,
     }));
