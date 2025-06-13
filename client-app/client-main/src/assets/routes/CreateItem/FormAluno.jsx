@@ -50,7 +50,7 @@ const FormAluno = ({ onCreateAluno }) => {
           <input type="text" id='aulaId' value={aluno.aulaId} onChange={handleChange} placeholder='EX: 20239439053' required/>
           <div className="btns-form">
             <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='edit-btn' type="submit">Criar aluno</motion.button>
-            <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='delete-btn' type="reset">Limpar campos</motion.button>
+            <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='delete-btn' onClick={() => setAluno({ nome: '', email: '', aulaId: '' })} type="reset">Limpar campos</motion.button>
           </div>
         </form>
       </section>

@@ -37,7 +37,6 @@ async function deleteAula(aulaId) {
     console.log('Aula deletada com sucesso.');
   } catch (error) {
     console.error('Erro ao deletar aula:', error);
-    console.log('ID recebido pelo frontend:', aulaId);
   }
 }
 

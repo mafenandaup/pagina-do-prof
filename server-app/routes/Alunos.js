@@ -32,7 +32,7 @@ alunoRoutes.post('/alunos', async (req, res) => {
     if (aulaId) { //se o id da aula for fornecido
       await prisma.relateAulaAluno.create({ //cria registro de uma relação aluno-aula na entidade RelateAulaAluno
         data: {
-          alunoId: aluno.matricula, //a matricula do aluno já será autoincrementada no await.create
+          matricula: aluno.matricula, //a matricula do aluno já será autoincrementada no await.create
           aulaId,
         },
       });

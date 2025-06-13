@@ -10,14 +10,15 @@ import { motion } from "motion/react"
 
 const ItemAluno = ({ aluno, onDelete, onEdit }) => {
 
-    console.log('Props recebidas pelo ItemAluno:', aluno);
+    //o problema não tá nas props. nome, email e matrícula estão sendo recebidos de acordo
+    // sem ajustes no back
 
     return (
         <>
             <section className="item-container">
                 <figure className="icon"><FontAwesomeIcon icon={faUser} /></figure>
                 <div className="textbox">
-                   <span className='destaque'> <h1>{aluno.nome} - {aluno.email}</h1></span>
+                    <span className='destaque'> <h1>{aluno.nome} - {aluno.email}</h1></span>
                     <p>(Matrícula : {aluno.matricula})</p>
                 </div>
                 <div className="container-btns">
@@ -30,7 +31,8 @@ const ItemAluno = ({ aluno, onDelete, onEdit }) => {
                     <motion.button whileHover={{ scale: 1.08 }} className="edit-btn"
                         onClick={(e) => {
                             e.stopPropagation();
-                            onEdit();
+                            console.log('Clique no botão de editar aluno com ID:', aluno.matricula); // Adicione este log
+                            onEdit(aluno)
                         }}
                     ><FontAwesomeIcon icon={faPenToSquare} /> Editar aluno</motion.button>
                 </div>

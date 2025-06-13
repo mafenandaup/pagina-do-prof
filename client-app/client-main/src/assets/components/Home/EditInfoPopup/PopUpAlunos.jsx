@@ -9,7 +9,7 @@ const PopUpAlunos = ({ aluno, onClose, onUpdate }) => {
     const [alunoData, setalunosData] = useState({
         nome: aluno?.nome || '',  // se os dados existem, serão autocompletados no forms. Caso contrário, o input estará em branco.
         email: aluno?.email || '',
-        aulaId: aluno?.aulaId || '',
+        matricula: aluno?.matricula || '',
     });
 
     useEffect(() => {
@@ -17,14 +17,15 @@ const PopUpAlunos = ({ aluno, onClose, onUpdate }) => {
             setalunosData({ // se existe um aluno, os registros são configurados conforme o que é posto no input.
                 nome: aluno.nome,
                 email: aluno.email,
-                aulaId: aluno.aulaId,
+                matricula: aluno.matricula,
             });
         }
     }, [aluno]);
 
     const handleInputChange = (e) => {
-        const { matricula, value } = e.target;
-        setalunosData({ ...alunoData, [matricula]: value });
+    const { matricula, value } = e.target;
+setalunosData({ ...alunoData, [matricula]: value });
+
     };
 
     const handleSubmit = async (e) => {
@@ -49,14 +50,14 @@ const PopUpAlunos = ({ aluno, onClose, onUpdate }) => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="nome">Nome do aluno</label>
-                    <input type="text" id='nome' value={alunoData.nome} onChange={handleInputChange} placeholder='EX: João da silva...' required />
+                    <input type="text" name='nome'id='nome' value={alunoData.nome} onChange={handleInputChange} placeholder='EX: João da silva...' required />
                     <label htmlFor="email">Email do Aluno</label>
-                    <input type="email" id="email" value={alunoData.email} onChange={handleInputChange} placeholder='fulanodetal.sobrenome@ucsal.edu.br' required />
+                    <input type="email" id="email" name='email' value={alunoData.email} onChange={handleInputChange} placeholder='fulanodetal.sobrenome@ucsal.edu.br' required />
                     <label htmlFor="class-date">ID da matéria correspondente</label>
-                    <input type="text" id='aulaId' value={alunoData.aulaId} onChange={handleInputChange} placeholder='EX: 20239439053' />
+                    <input type="text" name='matricula' id='matricula' value={alunoData.matricula} onChange={handleInputChange} placeholder='EX: 20239439053' />
                     <div className="btns-form">
                         <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='edit-btn' type="submit">Editar aluno</motion.button>
-                        <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='delete-btn' type="reset" onClick={() => setalunosData({ nome: '', email: '', aulaId: '' })} >Limpar campos</motion.button>
+                        <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 1 }} className='delete-btn' type="reset" onClick={() => setalunosData({ nome: '', email: '', matricula: '' })} >Limpar campos</motion.button>
                     </div>
                 </form>
             </section>

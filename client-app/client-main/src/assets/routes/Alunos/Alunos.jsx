@@ -50,10 +50,10 @@ const Alunos = () => {
 
   async function updateAluno(updatedAluno) {
     try {
-      await api.patch(`/alunos/${selectedAluno.alunoId}`, updatedAluno); // Atualize a rota corretamente
+      await api.patch(`/alunos/${selectedAluno.matricula}`, updatedAluno); // Atualize a rota corretamente
       setAlunos((prevAlunos) =>
         prevAlunos.map((aluno) =>
-          aluno.alunoId === selectedAluno.alunoId
+          aluno.matricula === selectedAluno.matricula
             ? { ...aluno, ...updatedAluno }
             : aluno
         )
@@ -94,9 +94,9 @@ const Alunos = () => {
         <DefaultNavbar />
         {alunos.map((aluno) => (
           <ItemAluno
-            key={aluno.alunoId}
+            key={aluno.matricula}
             aluno={aluno}
-            onDelete={() => deleteAluno(aluno.alunoId)}
+            onDelete={() => deleteAluno(aluno.matricula)}
             onEdit={openForm}
             onClose={closeForm}
           />
