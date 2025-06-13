@@ -22,11 +22,11 @@ const PopUpAlunos = ({ aluno, onClose, onUpdate }) => {
         }
     }, [aluno]);
 
-    const handleInputChange = (e) => {
-    const { matricula, value } = e.target;
-setalunosData({ ...alunoData, [matricula]: value });
+const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setalunosData((prevData) => ({ ...prevData, [name]: value }));
+};
 
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,7 +41,7 @@ setalunosData({ ...alunoData, [matricula]: value });
         await onUpdate(alunoData); // espera até que os alunos sejam atualizadas para fechar a aba.
         onClose();
     };
-
+    
     return (
         <>
             <section className="popup-container" style={{ display: aluno ? 'block' : 'none' }} >
