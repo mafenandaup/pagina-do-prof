@@ -23,7 +23,7 @@ const PopUpAlunos = ({ aluno, onClose, onUpdate }) => {
     }, [aluno]);
 
 const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // muda o atributo conforme o 'name' de cada input
     setalunosData((prevData) => ({ ...prevData, [name]: value }));
 };
 
